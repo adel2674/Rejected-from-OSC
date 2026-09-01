@@ -10,9 +10,7 @@ Rejected From OSC ⚔️
 
 
  The Team:
-     Adel Ayman
-     Ziad :D
-     Abdelrahman Medhat
+     1.Adel Ayman  2.Ziad:D  3.Abdelrahman Medhat
 
    ```bash
    git clone [https://github.com/adel2674/Rejected-from-OSC.git](https://github.com/adel2674/Rejected-from-OSC.git)
