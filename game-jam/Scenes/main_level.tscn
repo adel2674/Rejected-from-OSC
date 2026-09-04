@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://dwly5rda0hp88"]
+
+[ext_resource type="Texture2D" uid="uid://c7dhqcvpqetqn" path="res://Assets/Sprites/Beach Background and Items/Beach Background and Items/File8.png" id="1_a2ia3"]
+[ext_resource type="Texture2D" uid="uid://fhmcpjddik6n" path="res://Assets/Sprites/Beach Background and Items/Beach Background and Items/File2.png" id="2_236hc"]
+[ext_resource type="Texture2D" uid="uid://bdq2kihf83rq7" path="res://Assets/Sprites/Beach Background and Items/Beach Background and Items/File4.png" id="3_lwkuy"]
+[ext_resource type="Texture2D" uid="uid://detcg2iu1hjem" path="res://Assets/Sprites/Beach Background and Items/Beach Background and Items/File1.png" id="4_tqiex"]
+[ext_resource type="Texture2D" uid="uid://befn1g2qas250" path="res://Assets/Sprites/Beach Background and Items/Beach Background and Items/File7.png" id="5_ha3dl"]
+[ext_resource type="Texture2D" uid="uid://cukhgfu2u07ec" path="res://Assets/Sprites/Beach Background and Items/Beach Background and Items/File3.png" id="6_ha3dl"]
+[ext_resource type="Texture2D" uid="uid://cgs65eca6wcl7" path="res://Assets/Sprites/dog.png" id="6_lwkuy"]
+[ext_resource type="Script" uid="uid://7buyy8giydfi" path="res://Scripts/canvas_layer.gd" id="6_tqiex"]
+[ext_resource type="Texture2D" uid="uid://dwwfl41eblcwy" path="res://Assets/Sprites/loser.png" id="7_tqiex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wp5od"]
+size = Vector2(1274, 362)
+
+[node name="Main_level" type="Node2D" unique_id=1154645232]
+
+[node name="background" type="Sprite2D" parent="." unique_id=206974681]
+modulate = Color(0.663, 0.663, 0.78, 0.78039217)
+texture = ExtResource("1_a2ia3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1811172578]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1485627039]
+position = Vector2(0, 167)
+shape = SubResource("RectangleShape2D_wp5od")
+debug_color = Color(0.73734546, 0.27528113, 0.9359175, 0.41960785)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1567403819]
+
+[node name="things" type="Node2D" parent="." unique_id=132443066]
+
+[node name="Sprite2D" type="Sprite2D" parent="things" unique_id=1097020359]
+position = Vector2(-530.00006, -64)
+scale = Vector2(0.101249896, 0.10125006)
+texture = ExtResource("2_236hc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="things" unique_id=1086854461]
+position = Vector2(-336, -77)
+scale = Vector2(0.101249896, 0.10125006)
+texture = ExtResource("2_236hc")
+
+[node name="Sprite2D3" type="Sprite2D" parent="things" unique_id=1282239552]
+position = Vector2(-475, -62)
+scale = Vector2(0.101249896, 0.10125006)
+texture = ExtResource("2_236hc")
+
+[node name="Sprite2D4" type="Sprite2D" parent="things" unique_id=2140678931]
+position = Vector2(-310, -57)
+scale = Vector2(0.15250002, 0.12125003)
+texture = ExtResource("3_lwkuy")
+
+[node name="Sprite2D5" type="Sprite2D" parent="things" unique_id=1392011564]
+position = Vector2(-93, -51)
+scale = Vector2(0.15250002, 0.12125003)
+texture = ExtResource("3_lwkuy")
+
+[node name="Sprite2D7" type="Sprite2D" parent="things" unique_id=1984343786]
+position = Vector2(104.999985, -50)
+scale = Vector2(0.15250002, 0.12125003)
+texture = ExtResource("3_lwkuy")
+
+[node name="Sprite2D8" type="Sprite2D" parent="things" unique_id=1643227209]
+position = Vector2(6.9999924, -60)
+scale = Vector2(0.15250002, 0.12125003)
+texture = ExtResource("3_lwkuy")
+
+[node name="Sprite2D6" type="Sprite2D" parent="things" unique_id=881117549]
+position = Vector2(-201, -64)
+scale = Vector2(0.15250002, 0.12125003)
+texture = ExtResource("3_lwkuy")
+
+[node name="Sprite2D9" type="Sprite2D" parent="things" unique_id=64161040]
+position = Vector2(-117, -69)
+scale = Vector2(0.125, 0.1075)
+texture = ExtResource("4_tqiex")
+
+[node name="Sprite2D10" type="Sprite2D" parent="things" unique_id=1947367930]
+position = Vector2(66, -72)
+scale = Vector2(0.09, 0.08125)
+texture = ExtResource("4_tqiex")
+
+[node name="Sprite2D11" type="Sprite2D" parent="things" unique_id=1429127668]
+position = Vector2(367, -67)
+scale = Vector2(0.125, 0.1075)
+texture = ExtResource("4_tqiex")
+
+[node name="Sprite2D12" type="Sprite2D" parent="things" unique_id=1758293836]
+position = Vector2(305.00003, -61.000004)
+scale = Vector2(0.07062502, 0.07437501)
+texture = ExtResource("5_ha3dl")
+
+[node name="Sprite2D13" type="Sprite2D" parent="things" unique_id=1400980900]
+position = Vector2(417.00003, -58.000004)
+scale = Vector2(0.07062502, 0.07437501)
+texture = ExtResource("5_ha3dl")
+
+[node name="Sprite2D14" type="Sprite2D" parent="things" unique_id=1937234759]
+position = Vector2(269, -52)
+scale = Vector2(0.059999853, 0.060000062)
+texture = ExtResource("6_ha3dl")
+
+[node name="Sprite2D15" type="Sprite2D" parent="things" unique_id=831848861]
+position = Vector2(-391, -64)
+scale = Vector2(0.059999853, 0.060000062)
+texture = ExtResource("6_ha3dl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=244410470]
+script = ExtResource("6_tqiex")
+
+[node name="dog_bar" type="HSlider" parent="CanvasLayer" unique_id=1428136178]
+offset_right = 279.0
+offset_bottom = 77.0
+mouse_filter = 2
+theme_override_icons/grabber = ExtResource("6_lwkuy")
+theme_override_icons/grabber_highlight = ExtResource("7_tqiex")
+theme_override_icons/grabber_disabled = ExtResource("7_tqiex")
+max_value = 20.0
+
+[node name="loser_bar" type="HSlider" parent="CanvasLayer" unique_id=1910905075]
+offset_left = -4.0
+offset_top = 63.0
+offset_right = 271.0
+offset_bottom = 139.0
+mouse_filter = 2
+theme_override_icons/grabber = ExtResource("7_tqiex")
+theme_override_icons/grabber_highlight = ExtResource("7_tqiex")
+max_value = 20.0
