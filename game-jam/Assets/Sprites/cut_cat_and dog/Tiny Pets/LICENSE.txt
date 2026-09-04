@@ -1,0 +1,6 @@
+Tiny Pets Asset Pack — License
+You MAY: use these assets in unlimited free or commercial games/projects,
+modify and edit them, include them in your game's compiled build.
+You MAY NOT: resell, sublicense or redistribute the assets themselves,
+as-is or repackaged, as an asset pack or template.
+No attribution required (but appreciated).
