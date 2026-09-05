@@ -11,7 +11,8 @@ bounce = 0.85
 radius = 22.022715
 
 [node name="ball" type="RigidBody2D" unique_id=1754714165 groups=["ball"]]
-collision_mask = 2
+collision_layer = 2
+collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_ij5cq")
 linear_damp_mode = 1
 script = ExtResource("1_ij5cq")

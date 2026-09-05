@@ -1,6 +1,6 @@
 
 extends CharacterBody2D
-@onready var ball: RigidBody2D = $"../RigidBody2D"
+@onready var ball: RigidBody2D = $"../ball"
 @onready var ani: AnimatedSprite2D = $AnimatedSprite2D
 
 
