@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dwly5rda0hp88"]
 
 [ext_resource type="Texture2D" uid="uid://c7dhqcvpqetqn" path="res://Assets/Sprites/Beach Background and Items/Beach Background and Items/File8.png" id="1_a2ia3"]
+[ext_resource type="PackedScene" uid="uid://d1bwm8822jsnk" path="res://Scenes/ball.tscn" id="1_and0o"]
 [ext_resource type="Texture2D" uid="uid://fhmcpjddik6n" path="res://Assets/Sprites/Beach Background and Items/Beach Background and Items/File2.png" id="2_236hc"]
 [ext_resource type="Texture2D" uid="uid://bdq2kihf83rq7" path="res://Assets/Sprites/Beach Background and Items/Beach Background and Items/File4.png" id="3_lwkuy"]
 [ext_resource type="Texture2D" uid="uid://detcg2iu1hjem" path="res://Assets/Sprites/Beach Background and Items/Beach Background and Items/File1.png" id="4_tqiex"]
@@ -15,9 +16,12 @@
 [ext_resource type="AudioStream" uid="uid://kjj07ndt4p2t" path="res://Assets/Sounds/fail_sound.mp3" id="13_hd7sb"]
 [ext_resource type="FontFile" uid="uid://bqwppwvrk8gos" path="res://Fonts/font/EBGaramond-Italic-VariableFont_wght.ttf" id="14_5vthg"]
 [ext_resource type="AudioStream" uid="uid://dxca3y72rmd7w" path="res://Assets/Sounds/beach.mp3" id="14_hd7sb"]
+[ext_resource type="AudioStream" uid="uid://cw747neifcped" path="res://Assets/Sounds/button_sound.mp3" id="15_jf8f8"]
+[ext_resource type="PackedScene" uid="uid://cy3x5yqjm84jv" path="res://Scenes/character_body_2d.tscn" id="16_unus1"]
+[ext_resource type="PackedScene" uid="uid://blqsvkp65uov4" path="res://Scenes/thrower.tscn" id="18_jf8f8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wp5od"]
-size = Vector2(1274, 362)
+size = Vector2(1274, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2jcip"]
 atlas = ExtResource("10_f3gli")
@@ -213,10 +217,9 @@ modulate = Color(0.663, 0.663, 0.78, 0.78039217)
 texture = ExtResource("1_a2ia3")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1811172578]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1485627039]
-position = Vector2(0, 167)
+position = Vector2(0, 224)
 shape = SubResource("RectangleShape2D_wp5od")
 debug_color = Color(0.73734546, 0.27528113, 0.9359175, 0.41960785)
 
@@ -302,25 +305,49 @@ texture = ExtResource("6_ha3dl")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=244410470]
 script = ExtResource("6_tqiex")
 
-[node name="dog_bar" type="HSlider" parent="CanvasLayer" unique_id=1428136178]
-offset_left = 9.0
-offset_right = 288.0
-offset_bottom = 77.0
-mouse_filter = 2
-theme_override_icons/grabber = ExtResource("6_lwkuy")
-theme_override_icons/grabber_highlight = ExtResource("7_tqiex")
-theme_override_icons/grabber_disabled = ExtResource("7_tqiex")
-max_value = 20.0
+[node name="loser_control" type="Control" parent="CanvasLayer" unique_id=1378425580]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="loser_bar" type="HSlider" parent="CanvasLayer" unique_id=1910905075]
-offset_left = 6.0
-offset_top = 60.0
-offset_right = 281.0
-offset_bottom = 136.0
-mouse_filter = 2
-theme_override_icons/grabber = ExtResource("7_tqiex")
-theme_override_icons/grabber_highlight = ExtResource("7_tqiex")
-max_value = 20.0
+[node name="loser_icon" type="TextureRect" parent="CanvasLayer/loser_control" unique_id=2055113779]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 47.0
+offset_right = 63.0
+offset_bottom = 100.0
+texture = ExtResource("7_tqiex")
+
+[node name="loser_label" type="Label" parent="CanvasLayer/loser_control" unique_id=440561545]
+layout_mode = 1
+offset_left = 74.0
+offset_top = 69.0
+offset_right = 105.0
+offset_bottom = 92.0
+text = "0"
+
+[node name="dog_control" type="Control" parent="CanvasLayer" unique_id=1430945010]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="dog_icon" type="TextureRect" parent="CanvasLayer/dog_control" unique_id=408288992]
+layout_mode = 1
+offset_left = 11.0
+offset_top = 1.0
+offset_right = 51.0
+offset_bottom = 43.0
+texture = ExtResource("6_lwkuy")
+
+[node name="dog_label" type="Label" parent="CanvasLayer/dog_control" unique_id=1061719450]
+layout_mode = 1
+offset_left = 71.0
+offset_top = 11.0
+offset_right = 97.0
+offset_bottom = 34.0
+text = "0"
 
 [node name="timer_box" type="Control" parent="CanvasLayer" unique_id=1369583022]
 layout_mode = 3
@@ -469,12 +496,41 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_dagrs")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vgie2")
 text = "Back to Main Menu"
 
+[node name="button_sound" type="AudioStreamPlayer2D" parent="CanvasLayer" unique_id=557529364]
+stream = ExtResource("15_jf8f8")
+volume_db = 12.806
+
 [node name="beach_sound" type="AudioStreamPlayer2D" parent="." unique_id=1958438639]
 stream = ExtResource("14_hd7sb")
 volume_db = 5.821
 parameters/looping = true
 
+[node name="CharacterBody2D" parent="." unique_id=1645930755 instance=ExtResource("16_unus1")]
+visible = false
+position = Vector2(-2, 53)
+scale = Vector2(2, 2)
+
+[node name="thrower" parent="." unique_id=466913220 node_paths=PackedStringArray("target_character") instance=ExtResource("18_jf8f8")]
+visible = false
+position = Vector2(-330, 56)
+target_character = NodePath("../thrower2")
+
+[node name="thrower2" parent="." unique_id=2074085600 node_paths=PackedStringArray("target_character") instance=ExtResource("18_jf8f8")]
+visible = false
+position = Vector2(398, 56)
+target_character = NodePath("../thrower")
+
+[node name="AnimatedSprite2D" parent="thrower2" index="1" unique_id=613346532]
+flip_h = true
+
+[node name="ball" parent="." unique_id=1754714165 instance=ExtResource("1_and0o")]
+visible = false
+position = Vector2(-268, 31)
+
 [connection signal="pressed" from="CanvasLayer/Main_Munu/VBoxContainer/Start_Button" to="CanvasLayer" method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Main_Munu/VBoxContainer/How_to_button" to="CanvasLayer" method="_on_how_to_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Main_Munu/VBoxContainer/Exit_button" to="CanvasLayer" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Main_Munu/Panel/back_button" to="CanvasLayer" method="_on_back_button_pressed"]
+
+[editable path="thrower"]
+[editable path="thrower2"]

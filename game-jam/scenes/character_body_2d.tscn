@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cy3x5yqjm84jv"]
 
-[ext_resource type="Script" uid="uid://4ww5in2hjwnw" path="res://scripts/character_body_2d.gd" id="1_dn4c7"]
+[ext_resource type="Script" uid="uid://4ww5in2hjwnw" path="res://Scripts/character_body_2d.gd" id="1_dn4c7"]
 [ext_resource type="Texture2D" uid="uid://c8dkw60ibdmwp" path="res://Assets/Sprites/Animal Pixel Art/1 Dog/Idle.png" id="1_g2brh"]
 [ext_resource type="Texture2D" uid="uid://rojdvney6dap" path="res://Assets/Sprites/Animal Pixel Art/1 Dog/Walk.png" id="2_dn4c7"]
 

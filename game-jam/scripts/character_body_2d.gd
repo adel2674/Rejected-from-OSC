@@ -3,6 +3,7 @@ extends CharacterBody2D
 const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
 
+
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var idle_coll: CollisionShape2D = $idle_coll
 @onready var move_coll: CollisionShape2D = $move_coll
