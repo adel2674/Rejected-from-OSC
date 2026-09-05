@@ -6,11 +6,8 @@ var min_angle_deg: float = 15.0
 var max_angle_deg: float = 75.0
 
 @onready var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
-var stick_to_player=false
-var current_thrower:CharacterBody2D
-func _physics_process(delta: float) -> void:
-	if stick_to_player:
-		position=current_thrower.position
+
+
 func throw(target_pos: Vector2) -> void:
 	# FIX: Consistently use global_position for both axes
 	var delta_x: float = target_pos.x - global_position.x

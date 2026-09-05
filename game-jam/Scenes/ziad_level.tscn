@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dmrumhdaso8x0"]
+
+[ext_resource type="PackedScene" uid="uid://dwly5rda0hp88" path="res://scenes/main_level.tscn" id="1_rfpkq"]
+[ext_resource type="PackedScene" uid="uid://d1bwm8822jsnk" path="res://scenes/ball.tscn" id="2_ii1ra"]
+[ext_resource type="PackedScene" uid="uid://00486d4o1d47" path="res://scenes/player.tscn" id="3_m3fme"]
+[ext_resource type="PackedScene" uid="uid://blqsvkp65uov4" path="res://scenes/thrower.tscn" id="3_purus"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_al4r6"]
+distance = -64.0
+
+[node name="ziad level" type="Node2D" unique_id=2010898450]
+
+[node name="Main_level" parent="." unique_id=1154645232 instance=ExtResource("1_rfpkq")]
+
+[node name="thrower" parent="." unique_id=466913220 node_paths=PackedStringArray("target_character") instance=ExtResource("3_purus")]
+position = Vector2(521, 15)
+target_character = NodePath("../thrower2")
+
+[node name="AnimatedSprite2D" parent="thrower" index="1" unique_id=613346532]
+flip_h = true
+
+[node name="Area2D" parent="thrower" index="2" unique_id=573323985]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="thrower/Area2D" index="0" unique_id=296284293]
+position = Vector2(2.9802322e-07, -1.3333335)
+
+[node name="thrower2" parent="." unique_id=1791710788 node_paths=PackedStringArray("target_character") instance=ExtResource("3_purus")]
+position = Vector2(-531, 16)
+target_character = NodePath("../thrower")
+
+[node name="Area2D" parent="thrower2" index="2" unique_id=573323985]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="thrower2/Area2D" index="0" unique_id=296284293]
+position = Vector2(3.333334, -1.3333334)
+
+[node name="ball" parent="." unique_id=1754714165 instance=ExtResource("2_ii1ra")]
+position = Vector2(-469, -31)
+
+[node name="player" parent="." unique_id=1205879047 instance=ExtResource("3_m3fme")]
+position = Vector2(-6, 3)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=784950594]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1317692240]
+position = Vector2(0, 21)
+shape = SubResource("WorldBoundaryShape2D_al4r6")
+
+[editable path="thrower"]
+[editable path="thrower2"]
