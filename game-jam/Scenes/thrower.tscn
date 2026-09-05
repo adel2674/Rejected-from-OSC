@@ -55,7 +55,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7b7a"]
-size = Vector2(34.333336, 37.666668)
+size = Vector2(23.000002, 17.333334)
 
 [node name="thrower" type="CharacterBody2D" unique_id=466913220]
 scale = Vector2(3, 3)
@@ -72,9 +72,11 @@ animation = &"throw"
 autoplay = "default"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=573323985]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=296284293]
-position = Vector2(0.8333337, -2.8333335)
+position = Vector2(6.5000014, 3.9999998)
 shape = SubResource("RectangleShape2D_g7b7a")
 debug_color = Color(0.85832614, 0.3409658, 0.34868398, 0.41960785)
 
