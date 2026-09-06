@@ -16,9 +16,11 @@
 [ext_resource type="AudioStream" uid="uid://kjj07ndt4p2t" path="res://Assets/Sounds/fail_sound.mp3" id="13_hd7sb"]
 [ext_resource type="FontFile" uid="uid://bqwppwvrk8gos" path="res://Fonts/font/EBGaramond-Italic-VariableFont_wght.ttf" id="14_5vthg"]
 [ext_resource type="AudioStream" uid="uid://dxca3y72rmd7w" path="res://Assets/Sounds/beach.mp3" id="14_hd7sb"]
+[ext_resource type="FontFile" uid="uid://udplvbq24did" path="res://Fonts/pixel_art_font/TepidTerminal.ttf" id="15_d4dc6"]
 [ext_resource type="AudioStream" uid="uid://cw747neifcped" path="res://Assets/Sounds/button_sound.mp3" id="15_jf8f8"]
 [ext_resource type="PackedScene" uid="uid://cy3x5yqjm84jv" path="res://Scenes/character_body_2d.tscn" id="16_unus1"]
 [ext_resource type="PackedScene" uid="uid://blqsvkp65uov4" path="res://Scenes/thrower.tscn" id="18_jf8f8"]
+[ext_resource type="PackedScene" uid="uid://dqibmgjoyuqgb" path="res://Scenes/border.tscn" id="20_qx7ya"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wp5od"]
 size = Vector2(1274, 248)
@@ -142,6 +144,9 @@ font_size = 25
 [sub_resource type="Theme" id="Theme_5vthg"]
 default_font = ExtResource("14_5vthg")
 
+[sub_resource type="Theme" id="Theme_d4dc6"]
+default_font = ExtResource("15_d4dc6")
+
 [sub_resource type="Theme" id="Theme_hd7sb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wp5od"]
@@ -189,6 +194,9 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="Theme" id="Theme_7wxy1"]
+default_font = ExtResource("15_d4dc6")
+
 [sub_resource type="LabelSettings" id="LabelSettings_wp5od"]
 font_size = 38
 
@@ -224,6 +232,7 @@ shape = SubResource("RectangleShape2D_wp5od")
 debug_color = Color(0.73734546, 0.27528113, 0.9359175, 0.41960785)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1567403819]
+zoom = Vector2(0.9, 0.9)
 
 [node name="things" type="Node2D" parent="." unique_id=132443066]
 
@@ -419,6 +428,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_d4dc6")
 
 [node name="Start_Button" type="Button" parent="CanvasLayer/Main_Munu/VBoxContainer" unique_id=535424139]
 layout_mode = 2
@@ -447,6 +457,7 @@ visible = false
 layout_mode = 0
 offset_right = 1176.0
 offset_bottom = 645.0
+theme = SubResource("Theme_7wxy1")
 
 [node name="Label" type="Label" parent="CanvasLayer/Main_Munu/Panel" unique_id=2071337673]
 layout_mode = 1
@@ -506,26 +517,31 @@ volume_db = 5.821
 parameters/looping = true
 
 [node name="CharacterBody2D" parent="." unique_id=1645930755 instance=ExtResource("16_unus1")]
-visible = false
 position = Vector2(-2, 53)
 scale = Vector2(2, 2)
 
 [node name="thrower" parent="." unique_id=466913220 node_paths=PackedStringArray("target_character") instance=ExtResource("18_jf8f8")]
-visible = false
-position = Vector2(-330, 56)
+position = Vector2(-570, 51.000004)
 target_character = NodePath("../thrower2")
+metadata/_edit_group_ = true
 
 [node name="thrower2" parent="." unique_id=2074085600 node_paths=PackedStringArray("target_character") instance=ExtResource("18_jf8f8")]
-visible = false
-position = Vector2(398, 56)
+position = Vector2(580, 53.000004)
 target_character = NodePath("../thrower")
+metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="thrower2" index="1" unique_id=613346532]
 flip_h = true
 
 [node name="ball" parent="." unique_id=1754714165 instance=ExtResource("1_and0o")]
-visible = false
-position = Vector2(-268, 31)
+position = Vector2(-505, 19)
+
+[node name="right_boarder" parent="." unique_id=603083815 instance=ExtResource("20_qx7ya")]
+position = Vector2(420, 0)
+
+[node name="left_boarder" parent="." unique_id=1839763145 instance=ExtResource("20_qx7ya")]
+position = Vector2(-410, 56)
+scale = Vector2(-1, -1)
 
 [connection signal="pressed" from="CanvasLayer/Main_Munu/VBoxContainer/Start_Button" to="CanvasLayer" method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Main_Munu/VBoxContainer/How_to_button" to="CanvasLayer" method="_on_how_to_button_pressed"]

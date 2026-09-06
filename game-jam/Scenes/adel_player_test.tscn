@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://glb00vbhi8kl"]
+
+[ext_resource type="Script" uid="uid://3lusrt3syrne" path="res://Scripts/adel_player_test.gd" id="1_ib6vy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wp5od"]
+size = Vector2(55, 51)
+
+[node name="adel_player_test" type="CharacterBody2D" unique_id=369597304]
+script = ExtResource("1_ib6vy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=157730701]
+position = Vector2(22.5, 16.5)
+shape = SubResource("RectangleShape2D_wp5od")
+debug_color = Color(0.6817127, 0.50432116, 1.92523e-07, 0.41960785)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1617804757]
+offset_right = 40.0
+offset_bottom = 40.0
