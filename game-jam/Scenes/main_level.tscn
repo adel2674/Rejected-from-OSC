@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cy3x5yqjm84jv" path="res://Scenes/character_body_2d.tscn" id="16_unus1"]
 [ext_resource type="PackedScene" uid="uid://blqsvkp65uov4" path="res://Scenes/thrower.tscn" id="18_jf8f8"]
 [ext_resource type="PackedScene" uid="uid://dqibmgjoyuqgb" path="res://Scenes/border.tscn" id="20_qx7ya"]
+[ext_resource type="PackedScene" uid="uid://5dhhtkiq2a83" path="res://Scenes/effect.tscn" id="21_d4dc6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wp5od"]
 size = Vector2(1282, 126)
@@ -156,7 +157,7 @@ default_font = ExtResource("15_d4dc6")
 [sub_resource type="Theme" id="Theme_hd7sb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wp5od"]
-bg_color = Color(0.04500001, 0.45, 0, 1)
+bg_color = Color(0, 0.5803922, 0.18431373, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hd7sb"]
 content_margin_left = 4.0
@@ -171,7 +172,7 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkdpk"]
-bg_color = Color(0.49375, 0.395, 0.79, 1)
+bg_color = Color(0.34509805, 0.50980395, 0.9647059, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_unus1"]
 content_margin_left = 4.0
@@ -186,7 +187,7 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k56px"]
-bg_color = Color(0.5, 0.11500001, 0.11500001, 1)
+bg_color = Color(0.9975527, 0, 0.12909222, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vthg"]
 content_margin_left = 4.0
@@ -555,6 +556,9 @@ wait_time = 8.0
 [node name="speed_timer" type="Timer" parent="." unique_id=1928990294]
 wait_time = 10.0
 
+[node name="effect" parent="." unique_id=442080253 instance=ExtResource("21_d4dc6")]
+position = Vector2(-508, -128)
+
 [connection signal="pressed" from="CanvasLayer/Main_Munu/VBoxContainer/Start_Button" to="CanvasLayer" method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Main_Munu/VBoxContainer/How_to_button" to="CanvasLayer" method="_on_how_to_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Main_Munu/VBoxContainer/Exit_button" to="CanvasLayer" method="_on_exit_button_pressed"]
@@ -564,3 +568,4 @@ wait_time = 10.0
 
 [editable path="thrower"]
 [editable path="thrower2"]
+[editable path="effect"]
