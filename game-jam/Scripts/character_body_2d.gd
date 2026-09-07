@@ -1,8 +1,13 @@
 extends CharacterBody2D
 
-const SPEED = 450.0
+var SPEED = 450.0
+
+
 const JUMP_VELOCITY = -600.0
 var can_catch := true
+
+var is_frozen = false
+var is_collected = false
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var idle_coll: CollisionShape2D = $idle_coll
@@ -15,6 +20,8 @@ var can_catch := true
 @onready var hitbox_move: Area2D = $hitbox_move
 @onready var hitbox_idle: Area2D = $hitbox_idle
 var was_in_air = false
+@onready var fx: CPUParticles2D = $"../effect/CPUParticles2D"
+@onready var effect: Node2D = $"../effect"
 
 # Live list of balls currently inside the hitboxes
 var catchable_balls: Array[Node2D] = []
@@ -37,14 +44,26 @@ func _unhandled_input(event: InputEvent) -> void:
 		for i in range(catchable_balls.size() - 1, -1, -1):
 			if not is_instance_valid(catchable_balls[i]):
 				catchable_balls.remove_at(i)
-		
 		if catchable_balls.size() > 0:
 			GameManger.add_score()
+			
+			# Move and play particles
+			effect.global_position = catchable_balls[0].global_position
+			fx.restart() 
+			
+			# Trigger the freeze frame! (0.05 to 0.1 seconds is the sweet spot)
+			apply_hit_stop(0.2)
+			
 			print("Score collected! Ball continues on its path.")
 		else:
 			GameManger.add_misses() 
 
+
 func _physics_process(delta: float) -> void:
+	
+	if is_frozen:
+		return
+		
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -95,3 +114,26 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 func _on_hitbox_body_exited(body: Node2D) -> void:
 	if body in catchable_balls:
 		catchable_balls.erase(body)
+func apply_hit_stop(duration: float = 0.08) -> void:
+	# Freeze the game completely
+	Engine.time_scale = 0.0
+	
+	# Create a timer that waits for 'duration' seconds. 
+	# The 'true' at the very end tells this timer to IGNORE the frozen time_scale!
+	await get_tree().create_timer(duration, true, false, true).timeout
+	
+	# Unfreeze the game
+	Engine.time_scale = 1.0
+
+	
+func freeze_player():
+	is_frozen = true
+	await get_tree().create_timer(2.0).timeout
+	is_frozen = false
+	
+func player_boost():
+	is_collected = true
+	SPEED = SPEED * 1.5
+	await get_tree().create_timer(6.0).timeout	
+	is_collected = false
+	SPEED = SPEED / 1.5

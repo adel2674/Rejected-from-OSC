@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://5dhhtkiq2a83"]
+
+[sub_resource type="Curve" id="Curve_2t0m4"]
+_data = [Vector2(0.113887295, 0.9844696), 0.0, 0.0, 0, 0, Vector2(1, 0.11679649), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="effect" type="Node2D" unique_id=442080253]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1696445766]
+emitting = false
+amount = 62
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.23
+initial_velocity_max = 100.0
+scale_amount_min = 6.0
+scale_amount_max = 12.0
+scale_amount_curve = SubResource("Curve_2t0m4")
+color = Color(0.6169376, 0.99944836, 0.9999998, 1)
