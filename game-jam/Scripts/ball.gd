@@ -2,8 +2,8 @@ extends RigidBody2D
 
 @export var ball_scene: PackedScene
 # Allows drives (20°) to steep lobs (70°)
-var min_angle_deg: float = 15.0
-var max_angle_deg: float = 75.0
+var min_angle_deg: float = 5
+var max_angle_deg: float = 63.0
 
 @onready var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 

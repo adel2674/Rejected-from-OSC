@@ -10,6 +10,10 @@ bounce = 0.85
 [sub_resource type="CircleShape2D" id="CircleShape2D_g7b7a"]
 radius = 22.022715
 
+[sub_resource type="Gradient" id="Gradient_wp5od"]
+offsets = PackedFloat32Array(0.022167487, 0.8990148)
+colors = PackedColorArray(0.87058824, 0.8980392, 0, 1, 1, 0.7176471, 0.3137255, 0)
+
 [node name="ball" type="RigidBody2D" unique_id=1754714165 groups=["ball"]]
 collision_layer = 2
 collision_mask = 0
@@ -23,3 +27,12 @@ shape = SubResource("CircleShape2D_g7b7a")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=415548853]
 scale = Vector2(0.671875, 0.671875)
 texture = ExtResource("1_d60mj")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1663065909]
+amount = 40
+lifetime = 0.7
+gravity = Vector2(0, 0)
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+color = Color(1, 1, 0.015686275, 1)
+color_ramp = SubResource("Gradient_wp5od")

@@ -79,6 +79,12 @@ func start_game():
 	misses = 0
 	game_time_left = 80
 	is_game_active = true
+	# عشان يتصفر علي الui
+	score_updated.emit(score)
+	misses_updated.emit(misses)
+	time_updated.emit(game_time_left)
+	
+	
 	get_tree().call_group("Balls", "queue_free")# بيبمسح اي كوره قديمه كانت طايره ف الهواء لما نبدا من جديد 
 		
 #/////////////////////////////////////////////////////	

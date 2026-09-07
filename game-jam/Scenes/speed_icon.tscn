@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://nrrnofhhsy7h"]
+
+[ext_resource type="Script" uid="uid://but7hukmvp0jn" path="res://Scripts/speed_icon.gd" id="1_na86k"]
+[ext_resource type="AudioStream" uid="uid://dy1sjq3sco0af" path="res://Assets/Sounds/speed_sound.mp3" id="2_8kdvq"]
+[ext_resource type="Texture2D" uid="uid://c82m4bnd0th88" path="res://Assets/Sprites/lightening-removepixel-preview.png" id="3_8kdvq"]
+[ext_resource type="Texture2D" uid="uid://dd5v8wshx0agt" path="res://Assets/Sprites/stars.png" id="4_8kdvq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wp5od"]
+size = Vector2(98.625, 76.375)
+
+[node name="speed_icon" type="Area2D" unique_id=2035056532]
+script = ExtResource("1_na86k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=140457379]
+shape = SubResource("RectangleShape2D_wp5od")
+debug_color = Color(0.68328977, 0.29547647, 0.9958773, 0.41960785)
+
+[node name="speed_sound" type="AudioStreamPlayer2D" parent="." unique_id=1809836228]
+stream = ExtResource("2_8kdvq")
+volume_db = 19.403
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=133237723]
+position = Vector2(0, -1)
+scale = Vector2(0.22451074, 0.19648524)
+texture = ExtResource("3_8kdvq")
+
+[node name="speed_particles" type="CPUParticles2D" parent="." unique_id=1062342874]
+emitting = false
+texture = ExtResource("4_8kdvq")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 150.0
+damping_max = 2.0
+scale_amount_min = 0.05
+scale_amount_max = 0.05
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

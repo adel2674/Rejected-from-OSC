@@ -49,19 +49,24 @@ func _on_game_over(won:bool):
 	timer_sound.stop()	
 	$"../beach_sound".stop()
 	timer_animation.stop()
+	
+	if GameManger.score == GameManger.misses:
+		$balance_label.show()
+	
+	elif won:
+		$winner_label.show()
+		$winner_sound.play()
+	else:
+		$loser_label.show()
+		$loser_sound.play()
+	await get_tree().create_timer(3.0).timeout	
+	
+	$winner_label.hide()
+	$loser_label.hide()
+	$balance_label.hide()
+	
 	main_munu.show()
-	start_button.text = "Play Again"
-
-# ابقي امسح الداله اللي تحت دي	
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed:
-		# اضغط Z لتجربة زيادة سكور الكلب وحركة الشريط + الصوت
-		if event.keycode == KEY_Z:
-			GameManger.add_score()
-			
-		# اضغط X لتجربة الخسارة وحركة شريط الخسارة + الصوت
-		elif event.keycode == KEY_X:
-			GameManger.add_misses()	
+	start_button.text = "Play Again"	
 
 
 func _on_start_button_pressed() -> void:
@@ -70,6 +75,8 @@ func _on_start_button_pressed() -> void:
 	GameManger.start_game()
 	$"../beach_sound".play()
 	$timer_sound.play()
+	get_parent().get_node("ice_timer").start()
+	get_parent().get_node("speed_timer").start()
 	timer_animation.play("timer")
 	
 func _on_exit_button_pressed() -> void:

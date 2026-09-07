@@ -1,8 +1,13 @@
 extends CharacterBody2D
 
-const SPEED = 450.0
+var SPEED = 450.0
+
+
 const JUMP_VELOCITY = -600.0
 var can_catch := true
+
+var is_frozen = false
+var is_collected = false
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var idle_coll: CollisionShape2D = $idle_coll
@@ -45,6 +50,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			GameManger.add_misses() 
 
 func _physics_process(delta: float) -> void:
+	
+	if is_frozen:
+		return
+		
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -95,3 +104,16 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 func _on_hitbox_body_exited(body: Node2D) -> void:
 	if body in catchable_balls:
 		catchable_balls.erase(body)
+
+	
+func freeze_player():
+	is_frozen = true
+	await get_tree().create_timer(2.0).timeout
+	is_frozen = false
+	
+func player_boost():
+	is_collected = true
+	SPEED = SPEED * 1.5
+	await get_tree().create_timer(6.0).timeout	
+	is_collected = false
+	SPEED = SPEED / 1.5

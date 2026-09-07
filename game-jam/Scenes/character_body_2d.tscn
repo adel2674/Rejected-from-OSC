@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cy3x5yqjm84jv"]
 
-[ext_resource type="Script" uid="uid://4ww5in2hjwnw" path="res://scripts/character_body_2d.gd" id="1_dn4c7"]
+[ext_resource type="Script" uid="uid://4ww5in2hjwnw" path="res://Scripts/character_body_2d.gd" id="1_dn4c7"]
 [ext_resource type="Texture2D" uid="uid://babujh4iijwoe" path="res://Assets/Sprites/Dog_medium.png" id="2_ws0vm"]
 [ext_resource type="AudioStream" uid="uid://cy8y42ybbxomx" path="res://Assets/Sounds/cute_jump.mp3" id="3_rhr3r"]
 [ext_resource type="AudioStream" uid="uid://ckyq8ie8d4cux" path="res://Assets/Sounds/soft explosion.mp3" id="4_t53lx"]
@@ -126,14 +126,17 @@ shape = SubResource("RectangleShape2D_al4r6")
 
 [node name="jump_sfx" type="AudioStreamPlayer2D" parent="." unique_id=1687445589]
 stream = ExtResource("3_rhr3r")
+volume_db = 12.0
 bus = &"sfx"
 
 [node name="landing_sfx" type="AudioStreamPlayer2D" parent="." unique_id=2089045225]
 stream = ExtResource("4_t53lx")
+volume_db = 18.0
 bus = &"sfx"
 
 [node name="catch_sfx" type="AudioStreamPlayer2D" parent="." unique_id=450202682]
 stream = ExtResource("5_yi2kj")
+volume_db = 17.851
 bus = &"sfx"
 
 [node name="catch_cooldown" type="Timer" parent="." unique_id=1199446851]
