@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://1yx622i5rwin" path="res://Assets/Sprites/Cute_Characters/3 Dude_Monster/Dude_Monster_Idle_4.png" id="1_gwjqb"]
 [ext_resource type="Script" uid="uid://bxlol0a41st3q" path="res://Scripts/thrower.gd" id="1_qoggl"]
 [ext_resource type="Texture2D" uid="uid://gl7aytqmbjwn" path="res://Assets/Sprites/Cute_Characters/3 Dude_Monster/Dude_Monster_Push_6.png" id="2_qoggl"]
+[ext_resource type="AudioStream" uid="uid://bdb2m6k261who" path="res://Assets/Sounds/pop_sound.mp3" id="4_qoggl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g7b7a"]
 
@@ -79,5 +80,9 @@ collision_mask = 2
 position = Vector2(6.5000014, 3.9999998)
 shape = SubResource("RectangleShape2D_g7b7a")
 debug_color = Color(0.85832614, 0.3409658, 0.34868398, 0.41960785)
+
+[node name="pop_sound" type="AudioStreamPlayer2D" parent="." unique_id=2081574167]
+stream = ExtResource("4_qoggl")
+volume_db = 9.314
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

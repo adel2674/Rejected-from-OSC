@@ -13,6 +13,7 @@ const JUMP_VELOCITY = -400.0
 func throw():
 	ball.throw(target_character.global_position)
 	ani.play("throw")
+	$pop_sound.play()
 	await ani.animation_finished
 	ani.play("default")
 		

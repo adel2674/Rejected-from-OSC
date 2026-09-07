@@ -5,16 +5,13 @@
 [ext_resource type="Script" uid="uid://cxbj1fh6kalfe" path="res://Scripts/main_level.gd" id="1_vgie2"]
 [ext_resource type="Texture2D" uid="uid://cgs65eca6wcl7" path="res://Assets/Sprites/dog.png" id="6_lwkuy"]
 [ext_resource type="Script" uid="uid://7buyy8giydfi" path="res://Scripts/canvas_layer.gd" id="6_tqiex"]
-[ext_resource type="Texture2D" uid="uid://dwwfl41eblcwy" path="res://Assets/Sprites/loser.png" id="7_tqiex"]
 [ext_resource type="AudioStream" uid="uid://cga4ycy51wouk" path="res://Assets/Sounds/short_dog_sound.mp3" id="9_qx7ya"]
-[ext_resource type="Texture2D" uid="uid://bsu65i2tr1o4m" path="res://Assets/Sprites/Timer/192x192/pipo-btleffect214_192.png" id="10_f3gli"]
 [ext_resource type="AudioStream" uid="uid://1whk1rv7syds" path="res://Assets/Sounds/timer_tricks.mp3" id="11_2jcip"]
+[ext_resource type="AudioStream" uid="uid://cjnlch8ewlgtd" path="res://Assets/Sounds/game_finish_sound.mp3" id="12_and0o"]
 [ext_resource type="AudioStream" uid="uid://kjj07ndt4p2t" path="res://Assets/Sounds/fail_sound.mp3" id="13_hd7sb"]
-[ext_resource type="AudioStream" uid="uid://c8layre4drih2" path="res://Assets/Sounds/winner.mp3" id="13_jf8f8"]
 [ext_resource type="FontFile" uid="uid://bqwppwvrk8gos" path="res://Fonts/font/EBGaramond-Italic-VariableFont_wght.ttf" id="14_5vthg"]
+[ext_resource type="Texture2D" uid="uid://cbcrn62juhq73" path="res://Assets/Sprites/heart (32x32).png" id="14_d4dc6"]
 [ext_resource type="AudioStream" uid="uid://dxca3y72rmd7w" path="res://Assets/Sounds/beach.mp3" id="14_hd7sb"]
-[ext_resource type="AudioStream" uid="uid://drcf8k1kxmemt" path="res://Assets/Sounds/game_over.mp3" id="14_qx7ya"]
-[ext_resource type="AudioStream" uid="uid://ysvppxp0a2n2" path="res://Assets/Sounds/tie_sound.mp3" id="15_7wxy1"]
 [ext_resource type="FontFile" uid="uid://udplvbq24did" path="res://Fonts/pixel_art_font/TepidTerminal.ttf" id="15_d4dc6"]
 [ext_resource type="AudioStream" uid="uid://cw747neifcped" path="res://Assets/Sounds/button_sound.mp3" id="15_jf8f8"]
 [ext_resource type="PackedScene" uid="uid://cy3x5yqjm84jv" path="res://Scenes/character_body_2d.tscn" id="16_unus1"]
@@ -25,128 +22,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wp5od"]
 size = Vector2(1282, 126)
 
-[sub_resource type="LabelSettings" id="LabelSettings_d4dc6"]
-font = ExtResource("15_d4dc6")
-
 [sub_resource type="LabelSettings" id="LabelSettings_qx7ya"]
 font = ExtResource("15_d4dc6")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2jcip"]
-atlas = ExtResource("10_f3gli")
-region = Rect2(0, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6l6h0"]
-atlas = ExtResource("10_f3gli")
-region = Rect2(192, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o18aq"]
-atlas = ExtResource("10_f3gli")
-region = Rect2(384, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hd7sb"]
-atlas = ExtResource("10_f3gli")
-region = Rect2(576, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5vthg"]
-atlas = ExtResource("10_f3gli")
-region = Rect2(768, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_unus1"]
-atlas = ExtResource("10_f3gli")
-region = Rect2(0, 192, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vgie2"]
-atlas = ExtResource("10_f3gli")
-region = Rect2(192, 192, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_and0o"]
-atlas = ExtResource("10_f3gli")
-region = Rect2(384, 192, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jf8f8"]
-atlas = ExtResource("10_f3gli")
-region = Rect2(576, 192, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qx7ya"]
-atlas = ExtResource("10_f3gli")
-region = Rect2(768, 192, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d4dc6"]
-atlas = ExtResource("10_f3gli")
-region = Rect2(0, 384, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7wxy1"]
-atlas = ExtResource("10_f3gli")
-region = Rect2(192, 384, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ce4n"]
-atlas = ExtResource("10_f3gli")
-region = Rect2(384, 384, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o0i6v"]
-atlas = ExtResource("10_f3gli")
-region = Rect2(576, 384, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1ubp3"]
-atlas = ExtResource("10_f3gli")
-region = Rect2(768, 384, 192, 192)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_wp5od"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2jcip")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6l6h0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o18aq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hd7sb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5vthg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_unus1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vgie2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_and0o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jf8f8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qx7ya")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d4dc6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7wxy1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8ce4n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o0i6v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1ubp3")
-}],
-"loop": 1,
-"name": &"timer",
-"speed": 10.0
-}]
-
-[sub_resource type="LabelSettings" id="LabelSettings_f3gli"]
-font = ExtResource("15_d4dc6")
-font_size = 25
 
 [sub_resource type="Theme" id="Theme_5vthg"]
 default_font = ExtResource("14_5vthg")
@@ -225,20 +102,20 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="Theme" id="Theme_pbq55"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_530h6"]
+font = ExtResource("15_d4dc6")
+font_size = 100
+font_color = Color(0.49803922, 1, 0.11764706, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_vkdpk"]
 font = ExtResource("15_d4dc6")
-font_size = 200
-font_color = Color(0.85490197, 1, 0, 1)
+font_size = 25
 
 [sub_resource type="LabelSettings" id="LabelSettings_dagrs"]
 font = ExtResource("15_d4dc6")
-font_size = 200
-font_color = Color(1, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_7s7o5"]
-font = ExtResource("15_d4dc6")
-font_size = 150
-font_color = Color(0.9607843, 0.6392157, 1, 1)
+font_size = 25
 
 [node name="Main_level" type="Node2D" unique_id=1154645232]
 script = ExtResource("1_vgie2")
@@ -260,30 +137,8 @@ debug_color = Color(0.73734546, 0.27528113, 0.9359175, 0.41960785)
 zoom = Vector2(0.9, 0.9)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=244410470]
+process_mode = 3
 script = ExtResource("6_tqiex")
-
-[node name="loser_control" type="Control" parent="CanvasLayer" unique_id=1378425580]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="loser_icon" type="TextureRect" parent="CanvasLayer/loser_control" unique_id=2055113779]
-layout_mode = 1
-offset_left = 10.0
-offset_top = 47.0
-offset_right = 63.0
-offset_bottom = 100.0
-texture = ExtResource("7_tqiex")
-
-[node name="loser_label" type="Label" parent="CanvasLayer/loser_control" unique_id=440561545]
-layout_mode = 1
-offset_left = 76.0
-offset_top = 80.0
-offset_right = 107.0
-offset_bottom = 103.0
-text = "0"
-label_settings = SubResource("LabelSettings_d4dc6")
 
 [node name="dog_control" type="Control" parent="CanvasLayer" unique_id=1430945010]
 layout_mode = 3
@@ -292,6 +147,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="dog_icon" type="TextureRect" parent="CanvasLayer/dog_control" unique_id=408288992]
+visible = false
 layout_mode = 1
 offset_left = 11.0
 offset_top = 1.0
@@ -300,6 +156,7 @@ offset_bottom = 43.0
 texture = ExtResource("6_lwkuy")
 
 [node name="dog_label" type="Label" parent="CanvasLayer/dog_control" unique_id=1061719450]
+visible = false
 layout_mode = 1
 offset_left = 74.0
 offset_top = 20.0
@@ -307,37 +164,6 @@ offset_right = 100.0
 offset_bottom = 43.0
 text = "0"
 label_settings = SubResource("LabelSettings_qx7ya")
-
-[node name="timer_box" type="Control" parent="CanvasLayer" unique_id=1369583022]
-layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -47.0
-offset_bottom = 40.0
-grow_horizontal = 0
-size_flags_horizontal = 0
-
-[node name="timer_animation" type="AnimatedSprite2D" parent="CanvasLayer/timer_box" unique_id=1218788719]
-position = Vector2(-72, 38)
-scale = Vector2(0.4427084, 0.4296875)
-sprite_frames = SubResource("SpriteFrames_wp5od")
-animation = &"timer"
-frame_progress = 0.94541883
-
-[node name="timer_label" type="Label" parent="CanvasLayer/timer_box" unique_id=1159031952]
-layout_mode = 0
-offset_left = -33.0
-offset_top = 21.0
-offset_right = 31.0
-offset_bottom = 56.0
-text = "01:20"
-label_settings = SubResource("LabelSettings_f3gli")
-
-[node name="Timer" type="Timer" parent="CanvasLayer" unique_id=2105405543]
-wait_time = 80.0
-one_shot = true
-autostart = true
 
 [node name="timer_sound" type="AudioStreamPlayer2D" parent="CanvasLayer" unique_id=1830589795]
 stream = ExtResource("11_2jcip")
@@ -460,63 +286,70 @@ text = "Back to Main Menu"
 stream = ExtResource("15_jf8f8")
 volume_db = 12.806
 
-[node name="winner_label" type="Label" parent="CanvasLayer" unique_id=113884758]
+[node name="Hearts_container" type="HBoxContainer" parent="CanvasLayer" unique_id=968446842]
 visible = false
-modulate = Color(1, 1, 0.7764706, 1)
+offset_left = 2.0
+offset_top = 57.0
+offset_right = 178.0
+offset_bottom = 97.0
+theme = SubResource("Theme_pbq55")
+metadata/_edit_group_ = true
+
+[node name="heart" type="TextureRect" parent="CanvasLayer/Hearts_container" unique_id=778744051]
+layout_mode = 2
+texture = ExtResource("14_d4dc6")
+
+[node name="heart2" type="TextureRect" parent="CanvasLayer/Hearts_container" unique_id=1580709158]
+layout_mode = 2
+texture = ExtResource("14_d4dc6")
+
+[node name="heart3" type="TextureRect" parent="CanvasLayer/Hearts_container" unique_id=1547264952]
+layout_mode = 2
+texture = ExtResource("14_d4dc6")
+
+[node name="heart4" type="TextureRect" parent="CanvasLayer/Hearts_container" unique_id=1801728936]
+layout_mode = 2
+texture = ExtResource("14_d4dc6")
+
+[node name="heart5" type="TextureRect" parent="CanvasLayer/Hearts_container" unique_id=2005168721]
+layout_mode = 2
+texture = ExtResource("14_d4dc6")
+
+[node name="final_score_label" type="Label" parent="CanvasLayer" unique_id=965258925]
+visible = false
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 265.0
-offset_top = -101.0
-offset_right = 265.0
-offset_bottom = 80.0
+offset_top = -11.5
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "WINNER"
+label_settings = SubResource("LabelSettings_530h6")
+horizontal_alignment = 1
+
+[node name="game_finish_sound" type="AudioStreamPlayer2D" parent="CanvasLayer" unique_id=598300303]
+stream = ExtResource("12_and0o")
+volume_db = 14.221
+
+[node name="stop_watch_label" type="Label" parent="CanvasLayer" unique_id=571990663]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
 label_settings = SubResource("LabelSettings_vkdpk")
 
-[node name="loser_label" type="Label" parent="CanvasLayer" unique_id=951501302]
-visible = false
-anchors_preset = 14
-anchor_top = 0.5
+[node name="fast_timer_label" type="Label" parent="CanvasLayer" unique_id=1534111990]
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 355.0
-offset_top = -101.0
-offset_right = 355.0
-offset_bottom = 80.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "LOSER"
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
 label_settings = SubResource("LabelSettings_dagrs")
-
-[node name="balance_label" type="Label" parent="CanvasLayer" unique_id=762672553]
-visible = false
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 221.0
-offset_top = -79.0
-offset_right = -128.0
-offset_bottom = 82.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "It 's a Tie"
-label_settings = SubResource("LabelSettings_7s7o5")
-
-[node name="winner_sound" type="AudioStreamPlayer2D" parent="CanvasLayer" unique_id=294399240]
-stream = ExtResource("13_jf8f8")
-volume_db = 17.463
-
-[node name="loser_sound" type="AudioStreamPlayer2D" parent="CanvasLayer" unique_id=837120533]
-stream = ExtResource("14_qx7ya")
-volume_db = 17.462
-
-[node name="balance_sound" type="AudioStreamPlayer2D" parent="CanvasLayer" unique_id=1004688113]
-stream = ExtResource("15_7wxy1")
-volume_db = 24.0
 
 [node name="beach_sound" type="AudioStreamPlayer2D" parent="." unique_id=1958438639]
 stream = ExtResource("14_hd7sb")

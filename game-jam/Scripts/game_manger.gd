@@ -2,17 +2,21 @@ extends Node
 
 signal score_updated (new_score)
 signal misses_updated (new_misses)
-signal time_updated(time_left)
-signal game_over (won) 
+#signal time_updated(time_left)
+signal game_over () #new
 signal change_dog_size (scale_modifier)
 
 #/////////////////////////////////////////////////////	
+
+var time_elapsed : float = 0
 
 var score :int = 0
 var misses :int = 0
 
 
-var game_time_left : float = 80 # 1m & 20s
+var lives = 5
+signal lives_updated(current_lives)
+
 var is_game_active : bool = false
 
 var current_ball_air_time : float = 3.0
@@ -22,25 +26,13 @@ var min_ball_air_time : float = 0.6
 
 func _ready() -> void:
 	pass # عشان اللعبه متبداش غير لو داس ستارت
-	#start_game() #new
+	
 
 #/////////////////////////////////////////////////////	
-
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	if !is_game_active:
 		return
-		
-	game_time_left -= delta
-	time_updated.emit(game_time_left)	
-	
-	var progress = game_time_left / 80.0
-	current_ball_air_time = lerp(min_ball_air_time,3.0,progress)
-	# المتغير اللي كنا عاملينه فوق لزمن الكره ف الهواء بيتغير من تلات ثواني ل0.6 ثانيه ..بيتغير بالراحه بناء علي مستوي التقدم 
-	# lerp  تخلي الحركه بالراحه بناء علي مستوي التقدم...ومستوي التقدم بيتغير بناء علي الوقت المتبقي والتايمر يخلص
-	
-	if game_time_left <= 0:
-		end_game()
-
+	time_elapsed +=delta	
 #/////////////////////////////////////////////////////	
 		
 func add_score():
@@ -58,6 +50,19 @@ func add_misses():
 	misses += 1
 	misses_updated.emit(misses)	
 	check_dog_size_change()	
+#//////////////////////////////////
+func lose_life():
+	if !is_game_active:
+		return
+	lives-=1
+	lives_updated.emit(lives)
+	if lives <= 0:
+		is_game_active = false
+		emit_signal("game_over")#ابدا اجراءا نهايه اللعبه
+		
+	
+
+
 	
 #/////////////////////////////////////////////////////	
 		
@@ -76,24 +81,22 @@ func rondom_dog_size():
 		
 func start_game():
 	score = 0
-	misses = 0
-	game_time_left = 80
+	lives = 5 #new
+	time_elapsed = 0.0
 	is_game_active = true
 	# عشان يتصفر علي الui
 	score_updated.emit(score)
-	misses_updated.emit(misses)
-	time_updated.emit(game_time_left)
-	
+	lives_updated.emit(lives)#new
 	
 	get_tree().call_group("Balls", "queue_free")# بيبمسح اي كوره قديمه كانت طايره ف الهواء لما نبدا من جديد 
 		
 #/////////////////////////////////////////////////////	
-		
-func end_game():
-	is_game_active = false
-	if score > misses:
-		game_over.emit(true)
-	else:
-		game_over.emit(false)	
-		
-#/////////////////////////////////////////////////////					
+func get_formatted_time() -> String:
+	var minutes = int(time_elapsed) / 60
+	var seconds = int(time_elapsed) % 60
+	# حساب الأجزاء من الثانية (رقمين بيجروا بسرعة جداً)
+	var msec = int(fmod(time_elapsed, 1.0) * 100) 
+	
+	# الشكل النهائي هيكون مثلاً: 01:15:84
+	return "%02d:%02d:%02d" % [minutes, seconds, msec]
+#/////////////////////////////////////////////////////
