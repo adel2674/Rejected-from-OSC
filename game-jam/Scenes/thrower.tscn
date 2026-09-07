@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://blqsvkp65uov4"]
+
+[ext_resource type="Texture2D" uid="uid://1yx622i5rwin" path="res://Assets/Sprites/Cute_Characters/3 Dude_Monster/Dude_Monster_Idle_4.png" id="1_gwjqb"]
+[ext_resource type="Script" uid="uid://bxlol0a41st3q" path="res://Scripts/thrower.gd" id="1_qoggl"]
+[ext_resource type="Texture2D" uid="uid://gl7aytqmbjwn" path="res://Assets/Sprites/Cute_Characters/3 Dude_Monster/Dude_Monster_Push_6.png" id="2_qoggl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g7b7a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dbsl"]
+atlas = ExtResource("1_gwjqb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wem1"]
+atlas = ExtResource("1_gwjqb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_438j4"]
+atlas = ExtResource("1_gwjqb")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vncx5"]
+atlas = ExtResource("1_gwjqb")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puvxu"]
+atlas = ExtResource("2_qoggl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g7b7a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dbsl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wem1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_438j4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vncx5")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puvxu")
+}],
+"loop": 0,
+"name": &"throw",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7b7a"]
+size = Vector2(23.000002, 17.333334)
+
+[node name="thrower" type="CharacterBody2D" unique_id=466913220]
+scale = Vector2(3, 3)
+script = ExtResource("1_qoggl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1487789001]
+shape = SubResource("CapsuleShape2D_g7b7a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=613346532]
+position = Vector2(1.3333335, -4.9999995)
+scale = Vector2(1.2812501, 1.1979166)
+sprite_frames = SubResource("SpriteFrames_g7b7a")
+animation = &"throw"
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=573323985]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=296284293]
+position = Vector2(6.5000014, 3.9999998)
+shape = SubResource("RectangleShape2D_g7b7a")
+debug_color = Color(0.85832614, 0.3409658, 0.34868398, 0.41960785)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

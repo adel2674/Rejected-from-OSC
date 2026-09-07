@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://b8nclvbesei2c"]
+
+[ext_resource type="Script" uid="uid://drckkh837cgw5" path="res://Scripts/adel_scene_test.gd" id="1_t72g1"]
+[ext_resource type="Texture2D" uid="uid://bya2e4b1muphq" path="res://Assets/Sprites/pixel_art_bg/Farewell_Back_640x360.png" id="1_y08pq"]
+[ext_resource type="PackedScene" uid="uid://blqsvkp65uov4" path="res://Scenes/thrower.tscn" id="2_t72g1"]
+[ext_resource type="PackedScene" uid="uid://d1bwm8822jsnk" path="res://Scenes/ball.tscn" id="3_5fg1i"]
+[ext_resource type="PackedScene" uid="uid://cy3x5yqjm84jv" path="res://Scenes/character_body_2d.tscn" id="4_wuiqa"]
+[ext_resource type="PackedScene" uid="uid://glb00vbhi8kl" path="res://Scenes/adel_player_test.tscn" id="6_5fg1i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wp5od"]
+size = Vector2(1278, 92)
+
+[node name="Node2D" type="Node2D" unique_id=1940860350]
+script = ExtResource("1_t72g1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1434449012]
+position = Vector2(2.5000076, -8.499985)
+scale = Vector2(2.0046873, 1.9916664)
+texture = ExtResource("1_y08pq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1453833194]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1359190611]
+position = Vector2(0, 298)
+shape = SubResource("RectangleShape2D_wp5od")
+debug_color = Color(0.70481104, 0.32755697, 0.9106558, 0.41960785)
+
+[node name="thrower" parent="." unique_id=466913220 node_paths=PackedStringArray("target_character") instance=ExtResource("2_t72g1")]
+position = Vector2(-587, 205)
+target_character = NodePath("../thrower2")
+
+[node name="thrower2" parent="." unique_id=1837761341 node_paths=PackedStringArray("target_character") instance=ExtResource("2_t72g1")]
+position = Vector2(561, 208)
+target_character = NodePath("../thrower")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" parent="thrower2" index="1" unique_id=613346532]
+flip_h = true
+
+[node name="ball" parent="." unique_id=1754714165 instance=ExtResource("3_5fg1i")]
+position = Vector2(-519, 167)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2091374557]
+zoom = Vector2(0.9, 0.9)
+
+[node name="CharacterBody2D" parent="." unique_id=1645930755 instance=ExtResource("4_wuiqa")]
+position = Vector2(6, 206)
+scale = Vector2(2, 2)
+
+[node name="ice_timer" type="Timer" parent="." unique_id=1239275765]
+wait_time = 10.0
+autostart = true
+
+[node name="adel_player_test" parent="." unique_id=369597304 instance=ExtResource("6_5fg1i")]
+position = Vector2(-109, 134)
+
+[connection signal="timeout" from="ice_timer" to="." method="_on_ice_timer_timeout"]
+
+[editable path="thrower2"]

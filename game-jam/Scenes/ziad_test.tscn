@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bywmltiwlkhj0"]
+
+[ext_resource type="PackedScene" uid="uid://00486d4o1d47" path="res://scenes/node_2d.tscn" id="1_5o63q"]
+[ext_resource type="PackedScene" uid="uid://blqsvkp65uov4" path="res://scenes/thrower.tscn" id="2_iv5h5"]
+[ext_resource type="PackedScene" uid="uid://d1bwm8822jsnk" path="res://scenes/ball.tscn" id="3_7ccsi"]
+[ext_resource type="PackedScene" uid="uid://4ng6g8ias23x" path="res://scenes/test_ziad_ground.tscn" id="4_1alsw"]
+
+[node name="ziad_test" type="Node2D" unique_id=548901342]
+
+[node name="player" parent="." unique_id=1205879047 instance=ExtResource("1_5o63q")]
+
+[node name="thrower" parent="." unique_id=466913220 node_paths=PackedStringArray("target_character") groups=["thrower"] instance=ExtResource("2_iv5h5")]
+position = Vector2(-526, 0)
+target_character = NodePath("../thrower2")
+
+[node name="thrower2" parent="." unique_id=882820079 node_paths=PackedStringArray("target_character") groups=["thrower"] instance=ExtResource("2_iv5h5")]
+position = Vector2(455, -5)
+target_character = NodePath("../thrower")
+
+[node name="AnimatedSprite2D" parent="thrower2" index="1" unique_id=613346532]
+flip_h = true
+
+[node name="ball" parent="." unique_id=1754714165 instance=ExtResource("3_7ccsi")]
+position = Vector2(430, -15)
+
+[node name="Area2D" parent="." unique_id=1984705563 instance=ExtResource("4_1alsw")]
+position = Vector2(-7, 9)
+
+[editable path="thrower2"]

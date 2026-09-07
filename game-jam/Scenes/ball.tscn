@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://d1bwm8822jsnk"]
+
+[ext_resource type="Texture2D" uid="uid://d3osr65yfccax" path="res://Assets/Sprites/tennis.png" id="1_d60mj"]
+[ext_resource type="Script" uid="uid://dfsvm87k1nb3p" path="res://Scripts/ball.gd" id="1_ij5cq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ij5cq"]
+friction = 0.11
+bounce = 0.85
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g7b7a"]
+radius = 22.022715
+
+[node name="ball" type="RigidBody2D" unique_id=1754714165 groups=["ball"]]
+collision_layer = 2
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_ij5cq")
+linear_damp_mode = 1
+script = ExtResource("1_ij5cq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=456766824]
+shape = SubResource("CircleShape2D_g7b7a")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=415548853]
+scale = Vector2(0.671875, 0.671875)
+texture = ExtResource("1_d60mj")
