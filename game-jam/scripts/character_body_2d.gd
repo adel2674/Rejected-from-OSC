@@ -4,7 +4,6 @@ const SPEED = 450.0
 const JUMP_VELOCITY = -600.0
 var can_catch := true
 
-
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var idle_coll: CollisionShape2D = $idle_coll
 @onready var move_coll: CollisionShape2D = $move_coll
@@ -15,11 +14,37 @@ var can_catch := true
 
 @onready var hitbox_move: Area2D = $hitbox_move
 @onready var hitbox_idle: Area2D = $hitbox_idle
-var held_ball: RigidBody2D = null
 var was_in_air = false
 
+# Live list of balls currently inside the hitboxes
+var catchable_balls: Array[Node2D] = []
+
+func _ready() -> void:
+	hitbox_idle.body_entered.connect(_on_hitbox_body_entered)
+	hitbox_idle.body_exited.connect(_on_hitbox_body_exited)
+	hitbox_move.body_entered.connect(_on_hitbox_body_entered)
+	hitbox_move.body_exited.connect(_on_hitbox_body_exited)
+
+# Moved catch input completely out of physics_process for instant response
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("catch") and can_catch:
+		if not catch_sfx.playing:
+			catch_sfx.play() 
+		can_catch = false
+		catch_cooldown.start(0.55) 
+		
+		# Clean up any destroyed or freed balls from the array first
+		for i in range(catchable_balls.size() - 1, -1, -1):
+			if not is_instance_valid(catchable_balls[i]):
+				catchable_balls.remove_at(i)
+		
+		if catchable_balls.size() > 0:
+			GameManger.add_score()
+			print("Score collected! Ball continues on its path.")
+		else:
+			GameManger.add_misses() 
+
 func _physics_process(delta: float) -> void:
-	# 1. Gravity and Jump Input
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -27,7 +52,6 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		jump_sfx.play()
 
-	# 2. Movement Logic
 	var direction := Input.get_axis("mleft", "mright")
 	
 	if direction < 0:
@@ -40,7 +64,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	# 3. Animation and Collision State Machine
 	if not is_on_floor():
 		animated_sprite_2d.play("jump")
 	else:
@@ -55,35 +78,6 @@ func _physics_process(delta: float) -> void:
 				idle_coll.set_deferred("disabled", true)
 				move_coll.set_deferred("disabled", false)
 				
-	# -------------------------------------------------------------
-	# 4. Catch Logic 
-	# -------------------------------------------------------------؟
-	if Input.is_action_just_pressed("catch") and can_catch == true:
-		if not catch_sfx.playing:
-			catch_sfx.play() 
-		can_catch = false
-		catch_cooldown.start(.55) 
-		var caught_the_ball = false
-		
-		var overlapping_bodies = hitbox_idle.get_overlapping_bodies() + hitbox_move.get_overlapping_bodies()
-		for body in overlapping_bodies:
-			if body.is_in_group("ball"):
-				caught_the_ball = true
-				held_ball = body
-				break 
-		if caught_the_ball:
-			GameManger.add_score()
-			held_ball.set_deferred("freeze", true)
-			print("sisi")
-
-		else:
-			GameManger.add_misses() 
-
-	# -------------------------------------------------------------
-	# تحديث موقع الكرة الممسوكة لتتبع اللاعب
-	if held_ball and is_instance_valid(held_ball):
-		# يمكنك إضافة أرقام لتعديل مكان الكرة، مثلا وضعها عند فم اللاعب
-		held_ball.global_position = global_position
 	var was_falling: bool = not is_on_floor() and velocity.y > 0.0
 	
 	move_and_slide()
@@ -93,19 +87,11 @@ func _physics_process(delta: float) -> void:
 
 func _on_catch_cooldown_timeout() -> void:
 	can_catch = true
-	if held_ball and is_instance_valid(held_ball):
-		# 1. فك التجميد
-		held_ball.set_deferred("freeze", false)
-		
-		# 2. البحث عن كل الأعداء في مجموعة thrower
-		var throwers = get_tree().get_nodes_in_group("thrower")
-		if throwers.size() > 0:
-			# اختيار واحد عشوائي لرمي الكرة إليه
-			var random_thrower = throwers.pick_random()
-			
-			# التأكد أن الكرة بها دالة الرمي
-			if held_ball.has_method("throw"):
-				held_ball.throw(random_thrower.global_position)
-		
-		# 3. تفريغ المتغير استعداداً للإمساك بكرة جديدة
-		held_ball = null
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("ball") and body not in catchable_balls:
+		catchable_balls.append(body)
+
+func _on_hitbox_body_exited(body: Node2D) -> void:
+	if body in catchable_balls:
+		catchable_balls.erase(body)
