@@ -17,6 +17,8 @@ var is_collected = false
 @onready var catch_sfx: AudioStreamPlayer2D = $catch_sfx
 @onready var catch_cooldown: Timer = $catch_cooldown
 
+@onready var camera: Camera2D = $"../Camera2D"
+
 @onready var hitbox_move: Area2D = $hitbox_move
 @onready var hitbox_idle: Area2D = $hitbox_idle
 var was_in_air = false
@@ -47,15 +49,17 @@ func _unhandled_input(event: InputEvent) -> void:
 		if catchable_balls.size() > 0:
 			GameManger.add_score()
 			
-			# Move and play particles
 			effect.global_position = catchable_balls[0].global_position
 			fx.restart() 
 			
-			# Trigger the freeze frame! (0.05 to 0.1 seconds is the sweet spot)
+			# Trigger the shake AND the freeze at the exact same time!
+			apply_screen_shake(15.0, 0.15)
 			apply_hit_stop(0.2)
 			
-			print("Score collected! Ball continues on its path.")
+		
+			
 		else:
+			apply_screen_shake(5.0, 0.2)
 			GameManger.add_misses() 
 
 
@@ -124,6 +128,20 @@ func apply_hit_stop(duration: float = 0.08) -> void:
 	
 	# Unfreeze the game
 	Engine.time_scale = 1.0
+func apply_screen_shake(intensity: float = 8.0, duration: float = 0.15) -> void:
+	if not camera: return
+	
+	# Create a tween that explicitly IGNORES the frozen time_scale
+	var tween = get_tree().create_tween().set_ignore_time_scale(true)
+	
+	# Create 5 rapid, random jagged movements
+	var step_time = duration / 5.0
+	for i in range(5):
+		var random_offset = Vector2(randf_range(-intensity, intensity), randf_range(-intensity, intensity))
+		tween.tween_property(camera, "offset", random_offset, step_time)
+		
+	# Snap the camera perfectly back to the center at the end
+	tween.tween_property(camera, "offset", Vector2.ZERO, 0.05)
 
 	
 func freeze_player():
