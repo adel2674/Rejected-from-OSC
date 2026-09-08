@@ -251,7 +251,14 @@ text = "   To move -> A & D 'or' left & right
    To catch -> ' F ' or ' j ' or ' left_click '              
                 
 
-    \"You must catch the ball to score a point\""
+    \"You must catch the ball to score a point\"
+
+Sometimes certain balls are difficult for a dog to catch. 
+Therefore, a good dog is one that can catch the most
+balls in the shortest amount of time.
+
+If you try to catch in a wrong position, you lose a heart
+"
 label_settings = SubResource("LabelSettings_k56px")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Main_Munu/Panel" unique_id=1452997804]
@@ -368,16 +375,6 @@ parameters/looping = true
 position = Vector2(20, 240)
 scale = Vector2(2, 2)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1567403819]
-position = Vector2(-10, -120)
-scale = Vector2(0.5, 0.5)
-zoom = Vector2(0.87, 0.87)
-limit_left = -850
-limit_right = 850
-limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 0.6
-
 [node name="thrower" parent="." unique_id=466913220 node_paths=PackedStringArray("target_character") instance=ExtResource("18_jf8f8")]
 position = Vector2(-746, 256)
 target_character = NodePath("../thrower2")
@@ -428,6 +425,14 @@ offset_left = -0.26399803
 offset_right = 0.15991211
 offset_bottom = 0.20794678
 texture = ExtResource("1_unus1")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1567403819]
+zoom = Vector2(0.87, 0.87)
+limit_left = -850
+limit_right = 850
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 0.6
 
 [connection signal="pressed" from="CanvasLayer/Main_Munu/VBoxContainer/Start_Button" to="CanvasLayer" method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Main_Munu/VBoxContainer/How_to_button" to="CanvasLayer" method="_on_how_to_button_pressed"]
