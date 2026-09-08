@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cxbj1fh6kalfe" path="res://Scripts/main_level.gd" id="1_vgie2"]
 [ext_resource type="Texture2D" uid="uid://cgs65eca6wcl7" path="res://Assets/Sprites/dog.png" id="6_lwkuy"]
 [ext_resource type="Script" uid="uid://7buyy8giydfi" path="res://Scripts/canvas_layer.gd" id="6_tqiex"]
-[ext_resource type="AudioStream" uid="uid://cga4ycy51wouk" path="res://Assets/Sounds/short_dog_sound.mp3" id="9_qx7ya"]
+[ext_resource type="AudioStream" uid="uid://4qrqf3jwiu8c" path="res://Assets/Sounds/561093__sorinious_genious__clap-5.wav" id="7_and0o"]
 [ext_resource type="AudioStream" uid="uid://1whk1rv7syds" path="res://Assets/Sounds/timer_tricks.mp3" id="11_2jcip"]
 [ext_resource type="AudioStream" uid="uid://cjnlch8ewlgtd" path="res://Assets/Sounds/game_finish_sound.mp3" id="12_and0o"]
 [ext_resource type="AudioStream" uid="uid://kjj07ndt4p2t" path="res://Assets/Sounds/fail_sound.mp3" id="13_hd7sb"]
@@ -20,10 +20,11 @@
 [ext_resource type="PackedScene" uid="uid://5dhhtkiq2a83" path="res://Scenes/effect.tscn" id="21_d4dc6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wp5od"]
-size = Vector2(1282, 126)
+size = Vector2(1704, 126)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qx7ya"]
 font = ExtResource("15_d4dc6")
+font_size = 25
 
 [sub_resource type="Theme" id="Theme_5vthg"]
 default_font = ExtResource("14_5vthg")
@@ -120,21 +121,12 @@ font_size = 25
 [node name="Main_level" type="Node2D" unique_id=1154645232]
 script = ExtResource("1_vgie2")
 
-[node name="background" type="Sprite2D" parent="." unique_id=206974681]
-modulate = Color(0.663, 0.663, 0.78, 0.78039217)
-position = Vector2(1, -3.5)
-scale = Vector2(2.015625, 1.9416666)
-texture = ExtResource("1_unus1")
-
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1811172578]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1485627039]
-position = Vector2(3, 284)
+position = Vector2(28, 368)
 shape = SubResource("RectangleShape2D_wp5od")
 debug_color = Color(0.73734546, 0.27528113, 0.9359175, 0.41960785)
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1567403819]
-zoom = Vector2(0.9, 0.9)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=244410470]
 process_mode = 3
@@ -147,21 +139,20 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="dog_icon" type="TextureRect" parent="CanvasLayer/dog_control" unique_id=408288992]
-visible = false
 layout_mode = 1
 offset_left = 11.0
 offset_top = 1.0
-offset_right = 51.0
-offset_bottom = 43.0
+offset_right = 70.0
+offset_bottom = 58.0
 texture = ExtResource("6_lwkuy")
+expand_mode = 2
 
 [node name="dog_label" type="Label" parent="CanvasLayer/dog_control" unique_id=1061719450]
-visible = false
 layout_mode = 1
-offset_left = 74.0
-offset_top = 20.0
-offset_right = 100.0
-offset_bottom = 43.0
+offset_left = 83.0
+offset_top = 22.0
+offset_right = 107.0
+offset_bottom = 49.0
 text = "0"
 label_settings = SubResource("LabelSettings_qx7ya")
 
@@ -171,8 +162,10 @@ volume_db = 15.134
 parameters/looping = true
 
 [node name="catch_sound" type="AudioStreamPlayer2D" parent="CanvasLayer" unique_id=2091650165]
-stream = ExtResource("9_qx7ya")
+stream = ExtResource("7_and0o")
 volume_db = 12.807
+pitch_scale = 0.84
+bus = &"sfx"
 
 [node name="miss_sound" type="AudioStreamPlayer2D" parent="CanvasLayer" unique_id=804538877]
 stream = ExtResource("13_hd7sb")
@@ -290,30 +283,45 @@ volume_db = 12.806
 visible = false
 offset_left = 2.0
 offset_top = 57.0
-offset_right = 178.0
-offset_bottom = 97.0
+offset_right = 288.0
+offset_bottom = 105.0
 theme = SubResource("Theme_pbq55")
 metadata/_edit_group_ = true
 
 [node name="heart" type="TextureRect" parent="CanvasLayer/Hearts_container" unique_id=778744051]
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.5, 1.5)
 texture = ExtResource("14_d4dc6")
+expand_mode = 2
 
 [node name="heart2" type="TextureRect" parent="CanvasLayer/Hearts_container" unique_id=1580709158]
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.5, 1.5)
 texture = ExtResource("14_d4dc6")
+expand_mode = 2
 
 [node name="heart3" type="TextureRect" parent="CanvasLayer/Hearts_container" unique_id=1547264952]
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.5, 1.5)
 texture = ExtResource("14_d4dc6")
+expand_mode = 2
 
 [node name="heart4" type="TextureRect" parent="CanvasLayer/Hearts_container" unique_id=1801728936]
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.5, 1.5)
 texture = ExtResource("14_d4dc6")
+expand_mode = 2
 
 [node name="heart5" type="TextureRect" parent="CanvasLayer/Hearts_container" unique_id=2005168721]
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.5, 1.5)
 texture = ExtResource("14_d4dc6")
+expand_mode = 2
 
 [node name="final_score_label" type="Label" parent="CanvasLayer" unique_id=965258925]
 visible = false
@@ -357,30 +365,44 @@ volume_db = 2.5
 parameters/looping = true
 
 [node name="CharacterBody2D" parent="." unique_id=1645930755 instance=ExtResource("16_unus1")]
-position = Vector2(9, 181)
+position = Vector2(20, 240)
 scale = Vector2(2, 2)
 
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1567403819]
+position = Vector2(-10, -120)
+scale = Vector2(0.5, 0.5)
+zoom = Vector2(0.87, 0.87)
+limit_left = -850
+limit_right = 850
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 0.6
+
 [node name="thrower" parent="." unique_id=466913220 node_paths=PackedStringArray("target_character") instance=ExtResource("18_jf8f8")]
-position = Vector2(-597, 173)
+position = Vector2(-746, 256)
 target_character = NodePath("../thrower2")
+min_x = -650.0
+max_x = -400.0
 metadata/_edit_group_ = true
 
 [node name="thrower2" parent="." unique_id=2074085600 node_paths=PackedStringArray("target_character") instance=ExtResource("18_jf8f8")]
-position = Vector2(580, 171)
+position = Vector2(642, 243)
 target_character = NodePath("../thrower")
+min_x = 415.0
+max_x = 620.0
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="thrower2" index="1" unique_id=613346532]
 flip_h = true
 
 [node name="ball" parent="." unique_id=1754714165 instance=ExtResource("1_and0o")]
-position = Vector2(-524, 92)
+position = Vector2(-689, 168)
 
 [node name="right_boarder" parent="." unique_id=603083815 instance=ExtResource("20_qx7ya")]
-position = Vector2(500, 0)
+position = Vector2(387, 61)
 
 [node name="left_boarder" parent="." unique_id=1839763145 instance=ExtResource("20_qx7ya")]
-position = Vector2(-500, 56)
+position = Vector2(-363, 45)
 scale = Vector2(-1, -1)
 
 [node name="ice_timer" type="Timer" parent="." unique_id=818417698]
@@ -391,6 +413,21 @@ wait_time = 10.0
 
 [node name="effect" parent="." unique_id=442080253 instance=ExtResource("21_d4dc6")]
 position = Vector2(-508, -128)
+
+[node name="background" type="CanvasLayer" parent="." unique_id=928070170]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="background" unique_id=939314174]
+self_modulate = Color(0.54745835, 0.5474584, 0.54745835, 1)
+top_level = true
+anchors_preset = -1
+anchor_left = -0.018000001
+anchor_right = 1.0450001
+anchor_bottom = 1.029
+offset_left = -0.26399803
+offset_right = 0.15991211
+offset_bottom = 0.20794678
+texture = ExtResource("1_unus1")
 
 [connection signal="pressed" from="CanvasLayer/Main_Munu/VBoxContainer/Start_Button" to="CanvasLayer" method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Main_Munu/VBoxContainer/How_to_button" to="CanvasLayer" method="_on_how_to_button_pressed"]

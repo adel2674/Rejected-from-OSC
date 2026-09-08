@@ -17,7 +17,8 @@ var is_collected = false
 @onready var catch_sfx: AudioStreamPlayer2D = $catch_sfx
 @onready var catch_cooldown: Timer = $catch_cooldown
 
-@onready var camera: Camera2D = $"../Camera2D"
+
+@onready var camera: Camera2D = $Camera2D
 
 @onready var hitbox_move: Area2D = $hitbox_move
 @onready var hitbox_idle: Area2D = $hitbox_idle
