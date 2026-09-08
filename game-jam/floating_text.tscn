@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://gx08kp5gmlwv"]
+
+[ext_resource type="FontFile" uid="uid://dtxckdvk33jf" path="res://Fonts/font/Merchant Copy.ttf" id="1_58iww"]
+[ext_resource type="Script" uid="uid://ct7ocp1vp03sv" path="res://floating_text.gd" id="1_ds5wh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g7b7a"]
+font = ExtResource("1_58iww")
+font_size = 43
+outline_size = 9
+outline_color = Color(1, 0, 0.16862746, 1)
+
+[node name="floating_text" type="Node2D" unique_id=1723518282]
+script = ExtResource("1_ds5wh")
+
+[node name="Label" type="Label" parent="." unique_id=1670456413]
+offset_right = 43.0
+offset_bottom = 23.0
+text = "MISS"
+label_settings = SubResource("LabelSettings_g7b7a")
+horizontal_alignment = 1
+vertical_alignment = 1
