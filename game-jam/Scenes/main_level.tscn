@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cgs65eca6wcl7" path="res://Assets/Sprites/dog.png" id="6_lwkuy"]
 [ext_resource type="Script" uid="uid://7buyy8giydfi" path="res://Scripts/canvas_layer.gd" id="6_tqiex"]
 [ext_resource type="AudioStream" uid="uid://4qrqf3jwiu8c" path="res://Assets/Sounds/561093__sorinious_genious__clap-5.wav" id="7_and0o"]
+[ext_resource type="AudioStream" uid="uid://boxrgijdg21gw" path="res://Assets/Sounds/driken5482-retro-hurt-1-236672.mp3" id="7_jf8f8"]
 [ext_resource type="AudioStream" uid="uid://1whk1rv7syds" path="res://Assets/Sounds/timer_tricks.mp3" id="11_2jcip"]
 [ext_resource type="AudioStream" uid="uid://cjnlch8ewlgtd" path="res://Assets/Sounds/game_finish_sound.mp3" id="12_and0o"]
-[ext_resource type="AudioStream" uid="uid://kjj07ndt4p2t" path="res://Assets/Sounds/fail_sound.mp3" id="13_hd7sb"]
 [ext_resource type="FontFile" uid="uid://bqwppwvrk8gos" path="res://Fonts/font/EBGaramond-Italic-VariableFont_wght.ttf" id="14_5vthg"]
 [ext_resource type="Texture2D" uid="uid://cbcrn62juhq73" path="res://Assets/Sprites/heart (32x32).png" id="14_d4dc6"]
 [ext_resource type="AudioStream" uid="uid://dxca3y72rmd7w" path="res://Assets/Sounds/beach.mp3" id="14_hd7sb"]
@@ -168,7 +168,7 @@ pitch_scale = 0.84
 bus = &"sfx"
 
 [node name="miss_sound" type="AudioStreamPlayer2D" parent="CanvasLayer" unique_id=804538877]
-stream = ExtResource("13_hd7sb")
+stream = ExtResource("7_jf8f8")
 volume_db = 12.03
 
 [node name="Main_Munu" type="Control" parent="CanvasLayer" unique_id=2089011665]
@@ -368,38 +368,38 @@ label_settings = SubResource("LabelSettings_dagrs")
 
 [node name="beach_sound" type="AudioStreamPlayer2D" parent="." unique_id=1958438639]
 stream = ExtResource("14_hd7sb")
-volume_db = 2.5
+volume_db = -10.801
 parameters/looping = true
 
 [node name="CharacterBody2D" parent="." unique_id=1645930755 instance=ExtResource("16_unus1")]
-position = Vector2(20, 240)
+position = Vector2(22, 241)
 scale = Vector2(2, 2)
 
 [node name="thrower" parent="." unique_id=466913220 node_paths=PackedStringArray("target_character") instance=ExtResource("18_jf8f8")]
-position = Vector2(-746, 256)
+position = Vector2(-723, 245)
 target_character = NodePath("../thrower2")
-min_x = -650.0
-max_x = -400.0
+min_x = -750.0
+max_x = -570.0
 metadata/_edit_group_ = true
 
 [node name="thrower2" parent="." unique_id=2074085600 node_paths=PackedStringArray("target_character") instance=ExtResource("18_jf8f8")]
-position = Vector2(642, 243)
+position = Vector2(693, 254)
 target_character = NodePath("../thrower")
-min_x = 415.0
-max_x = 620.0
+min_x = 530.0
+max_x = 750.0
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="thrower2" index="1" unique_id=613346532]
 flip_h = true
 
 [node name="ball" parent="." unique_id=1754714165 instance=ExtResource("1_and0o")]
-position = Vector2(-689, 168)
+position = Vector2(-663, 178)
 
 [node name="right_boarder" parent="." unique_id=603083815 instance=ExtResource("20_qx7ya")]
-position = Vector2(387, 61)
+position = Vector2(523, 99)
 
 [node name="left_boarder" parent="." unique_id=1839763145 instance=ExtResource("20_qx7ya")]
-position = Vector2(-363, 45)
+position = Vector2(-532, 92)
 scale = Vector2(-1, -1)
 
 [node name="ice_timer" type="Timer" parent="." unique_id=818417698]
@@ -410,6 +410,12 @@ wait_time = 10.0
 
 [node name="effect" parent="." unique_id=442080253 instance=ExtResource("21_d4dc6")]
 position = Vector2(-508, -128)
+
+[node name="CPUParticles2D" parent="effect" index="0" unique_id=1696445766]
+randomness = 0.38
+direction = Vector2(0, 0)
+initial_velocity_max = 182.46
+color = Color(1, 1, 1, 1)
 
 [node name="background" type="CanvasLayer" parent="." unique_id=928070170]
 layer = -1
@@ -422,12 +428,12 @@ anchor_left = -0.018000001
 anchor_right = 1.0450001
 anchor_bottom = 1.029
 offset_left = -0.26399803
-offset_right = 0.15991211
+offset_right = 23.159912
 offset_bottom = 0.20794678
 texture = ExtResource("1_unus1")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1567403819]
-zoom = Vector2(0.87, 0.87)
+zoom = Vector2(0.77, 0.77)
 limit_left = -850
 limit_right = 850
 limit_smoothed = true

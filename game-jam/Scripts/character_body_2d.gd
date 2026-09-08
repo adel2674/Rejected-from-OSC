@@ -3,7 +3,7 @@ extends CharacterBody2D
 var SPEED = 450.0
 
 
-const JUMP_VELOCITY = -600.0
+const JUMP_VELOCITY = -570.0
 var can_catch := true
 
 var is_frozen = false
@@ -18,13 +18,14 @@ var is_collected = false
 @onready var catch_cooldown: Timer = $catch_cooldown
 
 
-@onready var camera: Camera2D = $Camera2D
+@onready var camera: Camera2D = $"../Camera2D"
 
 @onready var hitbox_move: Area2D = $hitbox_move
 @onready var hitbox_idle: Area2D = $hitbox_idle
 var was_in_air = false
 @onready var fx: CPUParticles2D = $"../effect/CPUParticles2D"
 @onready var effect: Node2D = $"../effect"
+var floating_text_scene = preload("res://floating_text.tscn")
 
 # Live list of balls currently inside the hitboxes
 var catchable_balls: Array[Node2D] = []
@@ -60,9 +61,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 			
 		else:
-			apply_screen_shake(5.0, 0.2)
-			GameManger.add_misses() 
-
+			GameManger.add_misses()
+			apply_screen_shake(8.0, 0.10)
+			# --- Spawn the MISS text ---
+			var text_instance = floating_text_scene.instantiate()
+			# Add it to the main game tree, not the player, so it doesn't move with the player
+			get_tree().current_scene.add_child(text_instance)
+			
+			# Spawn it slightly above the player's head
+			var spawn_pos = global_position + Vector2(0, -30)
+			text_instance.start_floating(spawn_pos)
 
 func _physics_process(delta: float) -> void:
 	
