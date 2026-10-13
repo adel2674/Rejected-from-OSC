@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://mb5casvokhcy"]
+
+[ext_resource type="Texture2D" uid="uid://dn5n0i4lvawrp" path="res://icon.svg" id="1_81842"]
+[ext_resource type="Script" uid="uid://c1y05cvrioubx" path="res://Scripts/area_2d.gd" id="1_jb3vm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wp5od"]
+size = Vector2(121, 101.5)
+
+[node name="double_jump_icon" type="Area2D" unique_id=960400933]
+script = ExtResource("1_jb3vm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=892520333]
+position = Vector2(-0.99999905, 0.99999905)
+scale = Vector2(0.609375, 0.6171875)
+texture = ExtResource("1_81842")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=57217827]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_wp5od")
+debug_color = Color(0.71506685, 0.38302225, 0.7601034, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -7,7 +7,10 @@ const JUMP_VELOCITY = -570.0
 var can_catch := true
 
 var is_frozen = false
-var is_collected = false
+var speed_collected = false
+var jump_collected = false
+var jump_count = 0
+var max_jumps = 1
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var idle_coll: CollisionShape2D = $idle_coll
@@ -56,6 +59,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 			# Trigger the shake AND the freeze at the exact same time!
 			apply_screen_shake(15.0, 0.15)
+			apply_zoom_in()
 			apply_hit_stop(0.2)
 			
 		
@@ -76,13 +80,16 @@ func _physics_process(delta: float) -> void:
 	
 	if is_frozen:
 		return
-		
+	if is_on_floor():
+		jump_count = 0
+			
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and jump_count < max_jumps:
 		velocity.y = JUMP_VELOCITY
 		jump_sfx.play()
+		jump_count +=1
 
 	var direction := Input.get_axis("mleft", "mright")
 	
@@ -151,16 +158,45 @@ func apply_screen_shake(intensity: float = 8.0, duration: float = 0.15) -> void:
 		
 	# Snap the camera perfectly back to the center at the end
 	tween.tween_property(camera, "offset", Vector2.ZERO, 0.05)
+	
+#///////////////////////////////////////////////////////////////
 
+func apply_zoom_in():
+	var camera = get_parent().get_node("Camera2D")
+	
+	var tween_in = camera.create_tween().set_ignore_time_scale(true)
+	tween_in.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween_in.tween_property(camera,"zoom",Vector2(0.88,0.88),0.1)
+	await get_tree().create_timer(0.2,true,false,true).timeout
+	
+	var tween_out = camera.create_tween()
+	tween_out.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween_out.tween_property(camera,"zoom",Vector2(0.77,0.77),0.2)
+	
+	#get_tree().paused = false
+
+
+#/////////////////////////////////////////////////////////////////////
 	
 func freeze_player():
 	is_frozen = true
 	await get_tree().create_timer(2.0).timeout
 	is_frozen = false
 	
+#/////////////////////////////////////////////////////////////////////
+	
 func player_boost():
-	is_collected = true
+	speed_collected= true
 	SPEED = SPEED * 1.5
 	await get_tree().create_timer(6.0).timeout	
-	is_collected = false
+	speed_collected= false
 	SPEED = SPEED / 1.5
+#////////////////////////////////////////////////////////////
+	
+func make_double_jump():
+	jump_collected = true
+	max_jumps = 2
+	await get_tree().create_timer(7.0).timeout
+	max_jumps = 1
+	jump_collected = true
+	

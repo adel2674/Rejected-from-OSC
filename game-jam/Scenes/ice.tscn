@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://bggmbusck2n1d" path="res://Assets/Sounds/freeze_sound.mp3" id="3_g02c5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wp5od"]
-size = Vector2(55.5, 48)
+size = Vector2(67.875, 56.5)
 
 [sub_resource type="Gradient" id="Gradient_wp5od"]
 colors = PackedColorArray(0.627451, 0.85490197, 1, 1, 1, 1, 1, 1)
@@ -14,12 +14,10 @@ colors = PackedColorArray(0.627451, 0.85490197, 1, 1, 1, 1, 1, 1)
 script = ExtResource("1_uice2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1757324468]
-position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_wp5od")
 debug_color = Color(0.5179137, 0.57705665, 9.62615e-07, 0.41960785)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=370900590]
-position = Vector2(-5.9604645e-08, 0)
 scale = Vector2(0.1603004, 0.12616388)
 texture = ExtResource("2_g02c5")
 

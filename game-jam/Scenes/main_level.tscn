@@ -16,8 +16,13 @@
 [ext_resource type="AudioStream" uid="uid://cw747neifcped" path="res://Assets/Sounds/button_sound.mp3" id="15_jf8f8"]
 [ext_resource type="PackedScene" uid="uid://cy3x5yqjm84jv" path="res://Scenes/character_body_2d.tscn" id="16_unus1"]
 [ext_resource type="PackedScene" uid="uid://blqsvkp65uov4" path="res://Scenes/thrower.tscn" id="18_jf8f8"]
+[ext_resource type="Script" uid="uid://c0qdkwioq8kii" path="res://Scripts/mobile_ui.gd" id="19_d4dc6"]
+[ext_resource type="Texture2D" uid="uid://cla62dfy8ioh5" path="res://Assets/Mobile_UI/kenney_input-prompts_1.5/Keyboard & Mouse/Default/keyboard_arrow_up_outline.png" id="20_7wxy1"]
 [ext_resource type="PackedScene" uid="uid://dqibmgjoyuqgb" path="res://Scenes/border.tscn" id="20_qx7ya"]
+[ext_resource type="Texture2D" uid="uid://caoc0pr5lry4" path="res://Assets/Mobile_UI/kenney_input-prompts_1.5/Keyboard & Mouse/Default/keyboard_f_outline.png" id="21_8ce4n"]
 [ext_resource type="PackedScene" uid="uid://5dhhtkiq2a83" path="res://Scenes/effect.tscn" id="21_d4dc6"]
+[ext_resource type="Texture2D" uid="uid://q2mrxwpecyrj" path="res://Assets/Mobile_UI/kenney_input-prompts_1.5/Keyboard & Mouse/Vector/keyboard_arrow_right_outline.svg" id="22_8ce4n"]
+[ext_resource type="Texture2D" uid="uid://31sobh6dli4p" path="res://Assets/Mobile_UI/kenney_input-prompts_1.5/Keyboard & Mouse/Vector/keyboard_arrow_left_outline.svg" id="23_o0i6v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wp5od"]
 size = Vector2(1704, 126)
@@ -345,7 +350,7 @@ horizontal_alignment = 1
 
 [node name="game_finish_sound" type="AudioStreamPlayer2D" parent="CanvasLayer" unique_id=598300303]
 stream = ExtResource("12_and0o")
-volume_db = 14.221
+volume_db = 6.46
 
 [node name="stop_watch_label" type="Label" parent="CanvasLayer" unique_id=571990663]
 visible = false
@@ -371,7 +376,7 @@ stream = ExtResource("14_hd7sb")
 volume_db = -10.801
 parameters/looping = true
 
-[node name="CharacterBody2D" parent="." unique_id=1645930755 instance=ExtResource("16_unus1")]
+[node name="Dog" parent="." unique_id=1645930755 instance=ExtResource("16_unus1")]
 position = Vector2(22, 241)
 scale = Vector2(2, 2)
 
@@ -379,13 +384,13 @@ scale = Vector2(2, 2)
 position = Vector2(-723, 245)
 target_character = NodePath("../thrower2")
 min_x = -750.0
-max_x = -570.0
+max_x = -575.0
 metadata/_edit_group_ = true
 
 [node name="thrower2" parent="." unique_id=2074085600 node_paths=PackedStringArray("target_character") instance=ExtResource("18_jf8f8")]
 position = Vector2(693, 254)
 target_character = NodePath("../thrower")
-min_x = 530.0
+min_x = 545.0
 max_x = 750.0
 metadata/_edit_group_ = true
 
@@ -396,10 +401,10 @@ flip_h = true
 position = Vector2(-663, 178)
 
 [node name="right_boarder" parent="." unique_id=603083815 instance=ExtResource("20_qx7ya")]
-position = Vector2(523, 99)
+position = Vector2(510, 99)
 
 [node name="left_boarder" parent="." unique_id=1839763145 instance=ExtResource("20_qx7ya")]
-position = Vector2(-532, 92)
+position = Vector2(-528, 92)
 scale = Vector2(-1, -1)
 
 [node name="ice_timer" type="Timer" parent="." unique_id=818417698]
@@ -433,6 +438,7 @@ offset_bottom = 0.20794678
 texture = ExtResource("1_unus1")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1567403819]
+process_mode = 3
 zoom = Vector2(0.77, 0.77)
 limit_left = -850
 limit_right = 850
@@ -440,12 +446,47 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 0.6
 
+[node name="mobile_UI" type="CanvasLayer" parent="." unique_id=1068318022]
+script = ExtResource("19_d4dc6")
+
+[node name="jump_button" type="TouchScreenButton" parent="mobile_UI" unique_id=1371274993]
+modulate = Color(1, 1, 1, 0.18431373)
+position = Vector2(928, 356)
+scale = Vector2(4.5312495, 3.9374998)
+texture_normal = ExtResource("20_7wxy1")
+action = "jump"
+
+[node name="catch_button" type="TouchScreenButton" parent="mobile_UI" unique_id=545267216]
+modulate = Color(1, 1, 1, 0.14509805)
+position = Vector2(762, 168)
+scale = Vector2(4.2968745, 4.09375)
+texture_normal = ExtResource("21_8ce4n")
+action = "catch"
+
+[node name="right_button" type="TouchScreenButton" parent="mobile_UI" unique_id=259766453]
+modulate = Color(1, 1, 1, 0.44313726)
+position = Vector2(179, 496)
+scale = Vector2(2.84375, 2.171875)
+texture_normal = ExtResource("22_8ce4n")
+action = "mright"
+
+[node name="left_button" type="TouchScreenButton" parent="mobile_UI" unique_id=1458270723]
+modulate = Color(1, 1, 1, 0.5254902)
+position = Vector2(30.000004, 501)
+scale = Vector2(2.8281248, 2.0156252)
+texture_normal = ExtResource("23_o0i6v")
+action = "mleft"
+
+[node name="double_jump_timer" type="Timer" parent="." unique_id=1282222682]
+wait_time = 10.0
+
 [connection signal="pressed" from="CanvasLayer/Main_Munu/VBoxContainer/Start_Button" to="CanvasLayer" method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Main_Munu/VBoxContainer/How_to_button" to="CanvasLayer" method="_on_how_to_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Main_Munu/VBoxContainer/Exit_button" to="CanvasLayer" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Main_Munu/Panel/back_button" to="CanvasLayer" method="_on_back_button_pressed"]
 [connection signal="timeout" from="ice_timer" to="." method="_on_ice_timer_timeout"]
 [connection signal="timeout" from="speed_timer" to="." method="_on_speed_timer_timeout"]
+[connection signal="timeout" from="double_jump_timer" to="." method="_on_double_jump_timer_timeout"]
 
 [editable path="thrower"]
 [editable path="thrower2"]

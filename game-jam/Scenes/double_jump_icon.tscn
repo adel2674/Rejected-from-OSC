@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://br617scikrf1n"]
+
+[ext_resource type="Script" uid="uid://clmic6fbt8x0e" path="res://Scripts/double_jump_icon.gd" id="1_3ibvk"]
+[ext_resource type="Texture2D" uid="uid://rrtmmpnp1nyl" path="res://Assets/Sprites/arrow_up.png" id="2_x8pe5"]
+[ext_resource type="AudioStream" uid="uid://dmpsfxenqbt5" path="res://Assets/Sounds/double_jump.mp3" id="3_x8pe5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vwql"]
+size = Vector2(104.25, 107.32031)
+
+[sub_resource type="Gradient" id="Gradient_wp5od"]
+offsets = PackedFloat32Array(0, 0.0073891627, 1)
+colors = PackedColorArray(0, 0.7372549, 0, 1, 0.89411765, 0.8862745, 0.1254902, 1, 1, 0.64705884, 0.05882353, 1)
+
+[node name="double_jump_icon" type="Area2D" unique_id=801487020]
+script = ExtResource("1_3ibvk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=40373633]
+position = Vector2(1.9073486e-06, 1.9073486e-06)
+scale = Vector2(0.22265625, 0.22534181)
+texture = ExtResource("2_x8pe5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=524766611]
+position = Vector2(0, 1.3398438)
+shape = SubResource("RectangleShape2D_8vwql")
+debug_color = Color(0.9678647, 0.18429786, 0, 0.41960785)
+
+[node name="double_jump_effect" type="CPUParticles2D" parent="." unique_id=630672608]
+emitting = false
+amount = 1000
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 142.86
+initial_velocity_max = 273.81
+color = Color(0.676178, 0.37851885, 0.82397294, 1)
+color_ramp = SubResource("Gradient_wp5od")
+
+[node name="double_jump_sound" type="AudioStreamPlayer2D" parent="." unique_id=1398780028]
+stream = ExtResource("3_x8pe5")
+volume_db = 15.134
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

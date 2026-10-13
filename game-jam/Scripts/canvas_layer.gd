@@ -55,10 +55,14 @@ func _on_start_button_pressed() -> void:
 	$Hearts_container.show()
 	$dog_control/dog_label.show()
 	GameManger.start_game()
+	var player = get_parent().get_node("Dog")
+	player.global_position = Vector2(22,241)
+	player.velocity = Vector2.ZERO
+	
 	$"../beach_sound".play()
 	get_parent().get_node("ice_timer").start()
 	get_parent().get_node("speed_timer").start()
-	#timer_animation.play("timer")
+	
 	get_tree().paused = false
 	
 func _on_exit_button_pressed() -> void:

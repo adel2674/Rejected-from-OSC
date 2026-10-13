@@ -2,9 +2,13 @@ extends Node
 
 signal score_updated (new_score)
 signal misses_updated (new_misses)
+
+signal lives_updated(current_lives)
+
 #signal time_updated(time_left)
 signal game_over () #new
-signal change_dog_size (scale_modifier)
+signal rondom_heart ()
+#signal change_dog_size (scale_modifier)
 
 #/////////////////////////////////////////////////////	
 
@@ -15,12 +19,12 @@ var misses :int = 0
 
 
 var lives = 5
-signal lives_updated(current_lives)
+
 
 var is_game_active : bool = false
 
-var current_ball_air_time : float = 3.0
-var min_ball_air_time : float = 0.6
+#var current_ball_air_time : float = 3.0
+#var min_ball_air_time : float = 0.6
 
 #/////////////////////////////////////////////////////	
 
@@ -40,8 +44,18 @@ func add_score():
 		return
 	score += 1	
 	score_updated.emit(score)
-	check_dog_size_change()
 	
+	if score > 0 and score % 5 == 0:
+		rondom_heart.emit()
+		
+	
+	#check_dog_size_change()
+#//////////////////////////////////////////////////
+func add_life():
+	if lives < 5:
+		lives +=1	
+		lives_updated.emit(lives)
+		#emit_signal("lives_updated",lives)
 #/////////////////////////////////////////////////////	
 	
 func add_misses():
@@ -49,7 +63,7 @@ func add_misses():
 		return
 	misses += 1
 	misses_updated.emit(misses)	
-	check_dog_size_change()	
+	#check_dog_size_change()	
 #//////////////////////////////////
 func lose_life():
 	if !is_game_active:
@@ -66,16 +80,16 @@ func lose_life():
 	
 #/////////////////////////////////////////////////////	
 		
-func check_dog_size_change():
-	var total_plays = score + misses
-	if  total_plays !=0 and total_plays%2 == 0:
-		rondom_dog_size()
+#func check_dog_size_change():
+#	var total_plays = score + misses
+	#if  total_plays !=0 and total_plays%2 == 0:
+	#	rondom_dog_size()
 #/////////////////////////////////////////////////////	
 			
-func rondom_dog_size():
-	var sizes = [0.5 , 1, 1.5]
-	var rondom_size = sizes.pick_random()
-	change_dog_size.emit(rondom_size)
+#func rondom_dog_size():
+	#var sizes = [0.5 , 1, 1.5]
+	#var rondom_size = sizes.pick_random()
+	#change_dog_size.emit(rondom_size)
 	
 #/////////////////////////////////////////////////////		
 		
